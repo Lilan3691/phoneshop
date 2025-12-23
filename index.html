@@ -1,23 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '852047494123267');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=852047494123267&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '852047494123267');
+    fbq('track', 'PageView');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MoPhones Credit Pre-Qualification</title>
@@ -26,124 +21,93 @@ src="https://www.facebook.com/tr?id=852047494123267&ev=PageView&noscript=1"
         .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); max-width: 600px; margin: auto; }
         h2 { color: #004488; border-bottom: 2px solid #004488; padding-bottom: 10px; }
         .disclaimer { border: 2px solid #004488; padding: 15px; margin-bottom: 20px; background-color: #f0f8ff; color: #333; font-weight: bold; }
-        input[type="text"], input[type="file"], select { width: 100%; padding: 10px; margin: 8px 0; display: inline-block; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        input[type="submit"] { background-color: #004488; color: white; padding: 14px 20px; margin: 8px 0; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-size: 1.1em; }
+        input[type="text"], input[type="tel"], select { width: 100%; padding: 12px; margin: 8px 0; display: inline-block; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        input[type="submit"] { background-color: #004488; color: white; padding: 14px 20px; margin: 8px 0; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-size: 1.1em; font-weight: bold; }
         input[type="submit"]:hover { background-color: #0056b3; }
         .contact-us { text-align: center; margin-top: 20px; }
+        .error-msg { color: red; font-size: 0.9em; display: none; margin-bottom: 10px; }
     </style>
 </head>
 <body>
+
 <div class="container">
     <div style="text-align: center; margin-bottom: 20px;">
-        <img src="https://mophones.co/cdn/shop/files/MO-Logo-01_160x.png?v=1691582743" alt="MoPhones Official Logo" style="max-width: 150px; height: auto;">
+        <img src="https://mophones.co/cdn/shop/files/MO-Logo-01_160x.png?v=1691582743" alt="MoPhones Logo" style="max-width: 150px;">
     </div>
     <h2>MoPhones Credit Pre-Qualification</h2>
-    <p>Check out our available models and pricing: <a href="https://mophones.co" target="_blank" style="color:#004488; font-weight:bold;">mophones.co</a> (Samsung & iPhone only)</p>
-    <p>Please provide the required details and documents to check your eligibility.</p>
-    
+    <p>Check pricing at <a href="https://mophones.co" target="_blank">mophones.co</a></p>
+
     <div class="disclaimer">
-        🛑 <b>STOP: CREDIT HONESTY CHECK</b><br>
-        We know that life happens. We <b>DO NOT disqualify you for previous bad credit</b>—we only disqualify you for dishonesty. Be <b>100% TRUTHFUL</b> about all past loans. <b>HONESTY GETS YOU THE PHONE!</b>
-        <br><br>
-        ⚠️ <b>REGIONAL WARNING:</b> If you are not within the delivery regions listed, you will be disqualified for dishonesty, as physical proof of residence and landmarks are required for delivery.
+        🛑 <b>HONESTY CHECK:</b> Dishonesty about past loans results in immediate disqualification.
     </div>
 
-    <form method="POST" action="{ url_for('submit_application') }" enctype="multipart/form-data">
+    <form name="submit-to-google-sheet" id="portalForm">
+        <label for="full_name"><b>Full Name (As per ID)</b></label>
+        <input type="text" id="full_name" name="full_name" placeholder="John Doe" required>
 
-        <p style="color:#004488; font-weight:bold; margin-top:0;">(Please check the mophones.co link above for the deposit amount before selecting.)</p>
-        <label for="preferred_phone"><b>Preferred Phone Model (e.g., Samsung A42 or iPhone 11)</b></label>
-        <input type="text" id="preferred_phone" name="preferred_phone" required>
+        <label for="id_number"><b>National ID Number</b></label>
+        <input type="text" id="id_number" name="id_number" placeholder="12345678" required>
 
-        <label for="current_phone_model"><b>Current Phone Make and Model</b></label>
-        <input type="text" id="current_phone_model" name="current_phone_model" required>
-        
-        <label for="region"><b>Region of Residence (Required for Delivery)</b></label>
-<select id="region" name="region" required>
-  <option value="" disabled selected>Select Location</option>
-  <option value="nairobi">Nairobi County</option>
-  <option value="kiambu">Kiambu County</option>
-  <option value="nakuru">Nakuru Town</option>
-  <option value="machakos_syokimau">Machakos (Syokimau/Mlolongo)</option>
-  <option value="machakos_town">Machakos (Town)</option>
-  <option value="kajiado_kitengela">Kajiado (Kitengela)</option>
-  <option value="kajiado_rongai">Kajiado (Rongai/Ngong)</option>
-</select>
+        <label for="preferred_phone"><b>Preferred Phone Model</b></label>
+        <input type="text" id="preferred_phone" name="preferred_phone" placeholder="e.g. Samsung A42" required>
 
-        <label for="delivery_option"><b>Delivery or Pickup (Required)</b></label>
-        <select id="delivery_option" name="delivery_option" required>
-            <option value="Home or Work Delivery (Preferred)">Home or Work Delivery (Preferred)</option>
-            <option value="Pickup at Shop Location">Pickup at Shop Location</option>
+        <label for="region"><b>Region</b></label>
+        <select id="region" name="region" required>
+            <option value="" disabled selected>Select Location</option>
+            <option value="nairobi">Nairobi County</option>
+            <option value="kiambu">Kiambu County</option>
+            <option value="nakuru">Nakuru Town</option>
+            <option value="machakos">Machakos</option>
         </select>
-        
-        <label for="full_name">Full Name</label>
-        <input type="text" id="full_name" name="full_name" required>
 
-        <label for="id_number">National ID Number</label>
-        <input type="text" id="id_number" name="id_number" required>
+        <label for="nok_contact"><b>Next of Kin Contact Number</b></label>
+        <input type="tel" id="nok_contact" name="nok_contact" placeholder="0712345678" required>
 
-        <h3>Next of Kin Details</h3>
-        <label for="nok_name">Next of Kin Full Name (As per ID - Required)</label>
-        <input type="text" id="nok_name" name="nok_name" required>
-
-        <label for="nok_id">Next of Kin ID Number</label>
-        <input type="text" id="nok_id" name="nok_id" required>
-
-        <label for="nok_contact">Next of Kin Contact Number</label>
-        <input type="text" id="nok_contact" name="nok_contact" required>
-
-        <h3>Document Uploads (PNG, JPG, or PDF only)</h3>
-
-        <label for="id_front_pic">1. National ID Picture (Front)</label>
-        <input type="file" id="id_front_pic" name="id_front_pic" required>
-
-        <label for="id_back_pic">2. National ID Picture (Back)</label>
-        <input type="file" id="id_back_pic" name="id_back_pic" required>
-
-        <label for="selfie_pic">3. Selfie Picture (No headgear/glasses)</label>
-        <input type="file" id="selfie_pic" name="selfie_pic" required>
-        
-        <label for="mpesa_statement">4. 12 Months M-Pesa Statement (Request via *334#) (PDF Only)</label>
-        <input type="file" id="mpesa_statement" name="mpesa_statement" required>
-
-        <label for="mpesa_password">5. M-Pesa Statement Password</label>
+        <label for="mpesa_password"><b>M-Pesa Statement Password</b></label>
         <input type="text" id="mpesa_password" name="mpesa_password" required>
 
-        <div style="margin: 20px 0;">
-            <input type="checkbox" id="disclaimer_agree" name="disclaimer_agree" required>
-            <label for="disclaimer_agree">I have read the honesty check above and confirm that the details provided are 100% truthful.</label>
-        </div>
+        <div id="errorBox" class="error-msg">Please check your details and try again.</div>
 
-        <input type="submit" value="Submit Application & Documents">
+        <input type="submit" value="Submit Application">
     </form>
-    
-    <div class="contact-us">
-        <p>Need assistance or have a question?</p>
-        <a href="https://wa.me/254112384099" target="_blank" style="background-color: #25d366; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px;">
-            WhatsApp Us: +254112384099 (Akeya_669mophones)
-        </a>
-    </div>
-
 </div>
-</div> <script>
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbzxoZV-BC7jYgCwuR4y9SVgALBMqLWWoIfH889LpnC-BagmGhT6cHmZwSZI4icGq03o/exec';
-      const form = document.forms['submit-to-google-sheet'];
 
-      form.addEventListener('submit', e => {
-        e.preventDefault();
-        alert("Submitting... please wait.");
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzxoZV-BC7jYgCwuR4y9SVgALBMqLWWoIfH889LpnC-BagmGhT6cHmZwSZI4icGq03o/exec';
+  const form = document.forms['submit-to-google-sheet'];
+  const errorBox = document.getElementById('errorBox');
 
-        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-          .then(response => {
-            alert("Success! Your application has been received.");
-            form.reset();
-          })
-          .catch(error => {
-            console.error('Error!', error.message);
-            alert("Something went wrong. Please try again.");
-          });
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    errorBox.style.display = 'none';
+
+    // SIMPLE VALIDATION LOGIC
+    const idNum = document.getElementById('id_number').value;
+    const nokPhone = document.getElementById('nok_contact').value;
+
+    if (idNum.length < 7 || idNum.length > 10) {
+        alert("Invalid ID Number. Please check again.");
+        return;
+    }
+
+    if (nokPhone.length < 10) {
+        alert("Please enter a valid phone number.");
+        return;
+    }
+
+    alert("Submitting to MoPhones Portal... please wait.");
+
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+          alert("SUCCESS! Your application is in the system.");
+          form.reset();
+      })
+      .catch(error => {
+          console.error('Error!', error.message);
+          alert("Submission failed. Check your internet and try again.");
       });
-    </script>
+  });
+</script>
 
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"68517fa35b974e91ad0b03397f265994","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9b1a19961bb79f94',t:'MTc2NjM0ODYzNA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
