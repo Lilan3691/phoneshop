@@ -5,106 +5,145 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MoPhones Credit Pre-Qualification</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; background-color: #f0f4f8; color: #333; }
-        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); max-width: 550px; margin: auto; }
-        .logo-section { text-align: center; margin-bottom: 25px; }
-        h2 { color: #004488; text-align: center; margin-bottom: 10px; font-size: 1.5em; }
-        .search-instruction { background: #e7f3ff; border-left: 4px solid #004488; padding: 12px; margin-bottom: 20px; font-size: 0.95em; line-height: 1.4; }
-        .disclaimer { border: 2px solid #d32f2f; padding: 15px; margin-bottom: 25px; background-color: #fff5f5; border-radius: 6px; }
-        label { display: block; margin-top: 15px; font-weight: 600; color: #444; margin-bottom: 5px; }
-        input[type="text"], input[type="file"], select { width: 100%; padding: 12px; border: 1px solid #cbd5e0; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
-        input[type="submit"] { background-color: #004488; color: white; padding: 16px; margin-top: 25px; border: none; border-radius: 6px; cursor: pointer; width: 100%; font-size: 1.1em; font-weight: bold; transition: background 0.3s; }
-        input[type="submit"]:hover { background-color: #002d5a; }
-        h3 { color: #004488; margin-top: 30px; font-size: 1.2em; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        :root { --primary: #004488; --accent: #25d366; --error: #dc2626; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #f1f5f9; margin: 0; padding: 15px; line-height: 1.5; }
+        .container { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 500px; margin: auto; }
+        .logo { text-align: center; margin-bottom: 20px; }
+        h2 { color: var(--primary); text-align: center; font-size: 1.5em; margin: 0 0 15px 0; }
+        
+        .card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; margin-bottom: 20px; font-size: 0.9em; }
+        .disclaimer { border-left: 5px solid var(--error); background: #fff1f2; }
+        
+        label { display: block; margin-top: 18px; font-weight: 700; color: #1e293b; font-size: 0.95em; }
+        input, select { width: 100%; padding: 14px; margin-top: 6px; border: 2px solid #e2e8f0; border-radius: 10px; box-sizing: border-box; font-size: 16px; outline: none; transition: 0.3s; }
+        input:focus { border-color: var(--primary); }
+        
+        .file-section { background: #ffffff; border: 2px dashed #cbd5e0; padding: 15px; border-radius: 12px; margin-top: 10px; }
+        .btn-submit { background: var(--primary); color: white; padding: 18px; margin-top: 25px; border: none; border-radius: 10px; cursor: pointer; width: 100%; font-size: 1.1em; font-weight: 800; }
+        .btn-submit:disabled { background: #94a3b8; cursor: not-allowed; }
+        
+        .whatsapp-footer { display: flex; align-items: center; justify-content: center; background: var(--accent); color: white; text-decoration: none; padding: 15px; border-radius: 10px; margin-top: 15px; font-weight: bold; }
+        small { color: #64748b; font-size: 0.8em; display: block; margin-top: 5px; }
+        
+        #loader { display: none; text-align: center; padding: 10px; color: var(--primary); font-weight: bold; }
+        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid var(--primary); border-radius: 50%; width: 20px; height: 20px; animation: spin 1s linear infinite; display: inline-block; margin-right: 10px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="logo-section">
-        <img src="https://mophones.co/cdn/shop/files/MO-Logo-01_160x.png?v=1691582743" alt="MoPhones Logo" style="max-width: 140px;">
+    <div class="logo">
+        <img src="https://mophones.co/cdn/shop/files/MO-Logo-01_160x.png?v=1691582743" alt="MoPhones" style="width: 140px;">
     </div>
 
     <h2>Credit Pre-Qualification</h2>
-
-    <div class="search-instruction">
-        🔍 <b>How to find your phone:</b><br>
-        Go to <a href="https://mophones.co" target="_blank" style="color:#004488; font-weight:bold;">mophones.co</a> and use the <b>Search Button</b> to search for <b>'Samsung'</b> or <b>'iPhone'</b> to see available models and deposit prices.
-    </div>
     
-    <div class="disclaimer">
-        🛑 <b>HONESTY CHECK:</b> We do not disqualify for bad credit, only for dishonesty. Be 100% truthful about past loans to get approved.
+    <div class="card">
+        🔍 <b>Check Available Models:</b><br>
+        Go to <a href="https://mophones.co" target="_blank" style="color: var(--primary);">mophones.co</a> and use the <b>Search Button</b> to search for <b>'Samsung'</b> or <b>'iPhone'</b> to see models and deposit prices.
     </div>
 
-    <form name="submit-to-google-sheet">
-        <label>Preferred Phone Model</label>
-        <input type="text" name="preferred_phone" placeholder="e.g. iPhone 11" required>
+    <div class="card disclaimer">
+        🤝 <b>Honesty & Credit Check:</b><br>
+        After you apply, our team will call you for a credit check. We don't disqualify for bad credit, but we <b>DO</b> disqualify for lies. Be 100% truthful to get your phone!
+    </div>
 
-        <label>Current Phone Model</label>
-        <input type="text" name="current_phone_model" placeholder="The phone you use now" required>
+    <form name="submit-to-google-sheet" id="portalForm">
         
+        <label>Preferred Phone Model</label>
+        <input type="text" name="preferred_phone" id="phoneInput" placeholder="Samsung or iPhone models only" required>
+        <small>Example: Samsung A34 or iPhone 12</small>
+
+        <label>Full Name (3 Names strictly as per ID)</label>
+        <input type="text" name="full_name" required>
+
+        <label>National ID Number (8 Digits)</label>
+        <input type="text" name="id_number" id="idInput" maxlength="8" required>
+
         <label>Region of Residence</label>
         <select name="region" required>
-            <option value="" disabled selected>Select Location</option>
+            <option value="" disabled selected>Select your location</option>
             <option value="nairobi">Nairobi County</option>
             <option value="kiambu">Kiambu County</option>
             <option value="nakuru">Nakuru Town</option>
             <option value="machakos_syokimau">Machakos (Syokimau/Mlolongo)</option>
-            <option value="machakos_town">Machakos (Town)</option>
             <option value="kajiado_kitengela">Kajiado (Kitengela)</option>
             <option value="kajiado_rongai">Kajiado (Rongai/Ngong)</option>
         </select>
 
-        <label>Full Name (As per ID)</label>
-        <input type="text" name="full_name" placeholder="John Doe" required>
-
-        <label>National ID Number</label>
-        <input type="text" name="id_number" required>
-
-        <h3>Next of Kin</h3>
-        <label>Next of Kin Name</label>
+        <h3>Next of Kin Details</h3>
+        <label>Kin Full Name (3 Names as per ID)</label>
         <input type="text" name="nok_name" required>
-        <label>Next of Kin ID Number</label>
+        <label>Kin National ID Number</label>
         <input type="text" name="nok_id" required>
-        <label>Next of Kin Contact</label>
-        <input type="text" name="nok_contact" placeholder="0712345678" required>
+        <label>Kin Contact Number</label>
+        <input type="text" name="nok_contact" value="+254" required>
 
-        <h3>Documents (ID & Statements)</h3>
-        <label>1. National ID Front</label>
-        <input type="file" name="id_front_pic" accept="image/*" required>
+        <h3>Document Uploads</h3>
+        <p style="font-size: 0.85em; color: #ef4444;"><b>Requirements:</b> Clear photos, no headgear, clear background.</p>
         
-        <label>2. National ID Back</label>
-        <input type="file" name="id_back_pic" accept="image/*" required>
-        
-        <label>3. Selfie Picture</label>
-        <input type="file" name="selfie_pic" accept="image/*" required>
-        
-        <label>4. 12 Months M-Pesa Statement (PDF)</label>
-        <input type="file" name="mpesa_statement" accept=".pdf" required>
-        
-        <label>5. M-Pesa Statement Password</label>
-        <input type="text" name="mpesa_password" required>
+        <div class="file-section">
+            <label>1. National ID Front & Back (Photos)</label>
+            <input type="file" name="id_pics" accept="image/*" multiple required>
+            
+            <label>2. Selfie (Clear Background)</label>
+            <input type="file" name="selfie" accept="image/*" required>
+            
+            <label>3. 12-Month M-Pesa Statement (PDF)</label>
+            <p style="font-size: 0.75em; margin: 5px 0;">Dial <b>*334#</b> > Account > Full Statement > 12 Months</p>
+            <input type="file" name="mpesa_statement" accept=".pdf" required>
+            
+            <label>4. M-Pesa Statement Password</label>
+            <input type="text" name="mpesa_password" placeholder="Enter password to open PDF" required>
+        </div>
 
-        <input type="submit" value="Submit Application">
+        <div id="loader"><div class="spinner"></div> Uploading Documents... Please stay on this page.</div>
+        <button type="submit" class="btn-submit" id="submitBtn">Submit Application</button>
     </form>
+
+    <a href="https://wa.me/254112384099" class="whatsapp-footer">
+        💬 Need Help? Chat with us (+254112384099)
+    </a>
 </div>
 
 <script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbzxoZV-BC7jYgCwuR4y9SVgALBMqLWWoIfH889LpnC-BagmGhT6cHmZwSZI4icGq03o/exec';
-  const form = document.forms['submit-to-google-sheet'];
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzxoZV-BC7jYgCwuR4y9SVgALBMqLWWoIfH889LpnC-BagmGhT6cHmZwSZI4icGq03o/exec';
+const form = document.forms['submit-to-google-sheet'];
 
-  form.addEventListener('submit', e => {
+form.addEventListener('submit', e => {
     e.preventDefault();
-    alert("Uploading documents... This may take up to 30 seconds. Please do not close the page.");
     
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-      .then(response => {
-          alert("Success! Your application has been received.");
-          form.reset();
-      })
-      .catch(error => alert("Error! Please check your internet connection."));
-  });
-</script>
+    // VALIDATION: ID Length
+    const idVal = document.getElementById('idInput').value;
+    if (idVal.length !== 8) {
+        alert("❌ Error: National ID must be exactly 8 digits.");
+        return;
+    }
 
+    // VALIDATION: Phone Brand
+    const phoneVal = document.getElementById('phoneInput').value.toLowerCase();
+    if (!phoneVal.includes('samsung') && !phoneVal.includes('iphone')) {
+        alert("❌ Error: We only sell Samsung and iPhone. Please go back to the link to find a valid model.");
+        return;
+    }
+
+    // Show Loader
+    document.getElementById('submitBtn').disabled = true;
+    document.getElementById('loader').style.display = 'block';
+
+    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+    .then(response => {
+        alert("✅ APPLICATION RECEIVED! Thank you for choosing MoPhones. Please keep your phone nearby; our team will call you shortly for your credit check.");
+        form.reset();
+        window.location.reload(); 
+    })
+    .catch(error => {
+        alert("❌ Upload Error. Please check your internet and try again.");
+        document.getElementById('submitBtn').disabled = false;
+        document.getElementById('loader').style.display = 'none';
+    });
+});
+</script>
 </body>
 </html>
