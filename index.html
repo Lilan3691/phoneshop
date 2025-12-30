@@ -27,15 +27,12 @@
 
         .btn-submit { background: var(--primary); color: white; padding: 18px; border: none; border-radius: 10px; width: 100%; margin-top: 25px; font-weight: bold; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: transform 0.2s; }
         
-        /* New Contact Button Inside Form */
         .btn-contact { background: #f1f5f9; color: var(--primary); padding: 12px; border: 1px solid var(--primary); border-radius: 10px; width: 100%; margin-top: 10px; font-weight: bold; font-size: 0.9em; cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; }
 
-        /* Enhanced WhatsApp Floating Section */
         .whatsapp-container { position: fixed; bottom: 25px; right: 25px; display: flex; align-items: center; gap: 10px; z-index: 100; }
         .whatsapp-label { background: white; padding: 5px 12px; border-radius: 20px; font-size: 0.8em; font-weight: bold; color: #16a34a; box-shadow: 0 4px 10px rgba(0,0,0,0.2); border: 1px solid #25d366; }
         .whatsapp-float { background-color: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3); text-decoration: none; transition: 0.3s; }
-        .whatsapp-float:hover { transform: scale(1.1); }
-
+        
         .loader { width: 20px; height: 20px; border: 3px solid #FFF; border-bottom-color: transparent; border-radius: 50%; display: none; animation: rotation 1s linear infinite; }
         @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         
@@ -63,14 +60,14 @@
         <label>Phone Model Preferred</label>
         <input type="text" name="preferred_phone" placeholder="e.g. Samsung A15" required>
 
-        <label>Full Name (3 Names as on ID)</label>
-        <input type="text" name="full_name" id="nameInput" placeholder="First Middle Surname" required>
+        <label>Applicant Full Name (3 Names)</label>
+        <input type="text" name="full_name" id="nameInput" placeholder="As per ID" required>
 
-        <label>Email Address</label>
-        <input type="email" name="customer_email" placeholder="for confirmation email" required>
+        <label>Applicant Email Address</label>
+        <input type="email" name="customer_email" required>
 
-        <label>National ID Number</label>
-        <input type="text" name="id_number" maxlength="8" minlength="7" placeholder="ID Number" required>
+        <label>Applicant National ID Number</label>
+        <input type="text" name="id_number" maxlength="8" minlength="7" required>
 
         <label>ID Front & Back Images</label>
         <div class="file-section"><input type="file" name="id_front" accept="image/*" required></div>
@@ -80,10 +77,19 @@
         <div class="file-section"><input type="file" name="mpesa_statement" accept=".pdf" required></div>
 
         <label>Statement Password</label>
-        <input type="text" name="mpesa_password" placeholder="PDF Password" required>
+        <input type="text" name="mpesa_password" placeholder="Password for PDF" required>
+
+        <hr style="margin-top: 25px; border: 0; border-top: 1px solid #e2e8f0;">
+        <p style="font-size: 0.8em; color: var(--primary); font-weight: bold; margin-bottom: 0;">NEXT OF KIN INFORMATION</p>
+
+        <label>Next of Kin Full Name</label>
+        <input type="text" name="nok_name" placeholder="Full Name" required>
+
+        <label>Next of Kin ID Number</label>
+        <input type="text" name="nok_id" maxlength="8" minlength="7" placeholder="ID Number" required>
 
         <label>Next of Kin Contact</label>
-        <input type="text" name="nok_contact" id="kinContact" value="+254" required>
+        <input type="text" name="nok_contact" value="+254" required>
 
         <button type="submit" class="btn-submit" id="submitBtn">
             <span class="loader" id="btnLoader"></span>
