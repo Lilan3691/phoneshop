@@ -25,17 +25,21 @@
 
         .file-section { background: #f8fafc; border: 2px dashed #cbd5e1; padding: 12px; border-radius: 10px; margin-top: 5px; }
 
-        .btn-submit { background: var(--primary); color: white; padding: 18px; border: none; border-radius: 10px; width: 100%; margin-top: 30px; font-weight: bold; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: transform 0.2s; }
-        .btn-submit:hover { transform: translateY(-2px); background: #003366; }
-        .btn-submit:disabled { background: #94a3b8; transform: none; }
+        .btn-submit { background: var(--primary); color: white; padding: 18px; border: none; border-radius: 10px; width: 100%; margin-top: 25px; font-weight: bold; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: transform 0.2s; }
+        
+        /* New Contact Button Inside Form */
+        .btn-contact { background: #f1f5f9; color: var(--primary); padding: 12px; border: 1px solid var(--primary); border-radius: 10px; width: 100%; margin-top: 10px; font-weight: bold; font-size: 0.9em; cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; }
 
-        .whatsapp-float { position: fixed; bottom: 25px; right: 25px; background-color: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 100; text-decoration: none; transition: 0.3s; }
+        /* Enhanced WhatsApp Floating Section */
+        .whatsapp-container { position: fixed; bottom: 25px; right: 25px; display: flex; align-items: center; gap: 10px; z-index: 100; }
+        .whatsapp-label { background: white; padding: 5px 12px; border-radius: 20px; font-size: 0.8em; font-weight: bold; color: #16a34a; box-shadow: 0 4px 10px rgba(0,0,0,0.2); border: 1px solid #25d366; }
+        .whatsapp-float { background-color: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3); text-decoration: none; transition: 0.3s; }
         .whatsapp-float:hover { transform: scale(1.1); }
 
         .loader { width: 20px; height: 20px; border: 3px solid #FFF; border-bottom-color: transparent; border-radius: 50%; display: none; animation: rotation 1s linear infinite; }
         @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         
-        .footer { font-size: 0.75em; text-align: center; color: #94a3b8; margin-top: 25px; padding-bottom: 40px; }
+        .footer { font-size: 0.75em; text-align: center; color: #94a3b8; margin-top: 25px; padding-bottom: 80px; }
     </style>
 </head>
 <body>
@@ -49,7 +53,6 @@
     <div class="trust-badges">
         <span class="badge">✅ Verified Dealer</span>
         <span class="badge">🔒 Data Encrypted</span>
-        <span class="badge">⚡ Fast Track Approval</span>
     </div>
 
     <div class="strict-banner">
@@ -86,20 +89,27 @@
             <span class="loader" id="btnLoader"></span>
             <span id="btnText">Submit Application</span>
         </button>
+
+        <a href="tel:0112384099" class="btn-contact">
+            📞 Contact Agent: Akeya Lilian
+        </a>
     </form>
 </div>
 
-<a href="https://wa.me/254112384099?text=Hello%20Akeya,%20I%20need%20help%20with%20my%20MoPhones%20application" class="whatsapp-float" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35">
-</a>
+<div class="whatsapp-container">
+    <div class="whatsapp-label">Chat with Akeya</div>
+    <a href="https://wa.me/254112384099?text=Hello%20Akeya,%20I%20need%20help%20with%20my%20MoPhones%20application" class="whatsapp-float" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35">
+    </a>
+</div>
 
 <div class="footer">
     Portal Code: <strong>mo_leads_portal</strong><br>
-    Assigned Agent: <strong>Akeya Lilian</strong>
+    MoPhones Sales Agent: <strong>Akeya Lilian</strong><br>
+    Office: 0112384099
 </div>
 
 <script>
-// UPDATED URL: 
 const scriptURL = 'https://script.google.com/macros/s/AKfycbzeYIiyr3DVx__3giSLBkzahoD9sXg2vC3IerUSW8PqrwiwuA4CHOTuLpKh5Dh8QWNm/exec';
 
 const form = document.getElementById('ironCladPortal');
@@ -134,7 +144,7 @@ form.addEventListener('submit', e => {
     Promise.all(promises).then(() => {
         fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(formData) })
         .then(() => { 
-            alert("✅ SUCCESS! Your application is in. Check your email for confirmation from Akeya Lilian Mophones."); 
+            alert("✅ SUCCESS! Your application is in. Check your email for confirmation from Akeya Lilian."); 
             form.reset(); window.location.reload(); 
         })
         .catch(() => { alert("Submission failed. Check your internet."); submitBtn.disabled = false; btnLoader.style.display = "none"; btnText.innerText = "Submit Application"; });
