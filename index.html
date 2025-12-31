@@ -111,6 +111,16 @@
         <div class="file-section"><input type="file" name="id_front" accept="image/*" required></div>
         <div class="file-section" style="margin-top:10px;"><input type="file" name="id_back" accept="image/*" required></div>
 
+        <label>Verification Selfie</label>
+        <div class="file-section">
+            <input type="file" name="selfie" accept="image/*" required>
+            <div style="background: #f0fdf4; border-left: 4px solid var(--success); padding: 8px; margin-top: 8px; border-radius: 4px;">
+                <p style="margin: 0; font-size: 0.75em; color: #166534; line-height: 1.4;">
+                    📸 <b>Photo Requirements:</b> No hats/headgear, no glasses, and a clear background with nobody else visible.
+                </p>
+            </div>
+        </div>
+
         <label>12 Months M-Pesa Statement (PDF)</label>
         <div class="file-section"><input type="file" name="mpesa_statement" accept=".pdf" required></div>
 
@@ -154,37 +164,33 @@
 </div>
 
 <script>
-const scriptURL = 'https://script.google.com/macros/s/AKfycbzsG7JaDdtR95fLLV4lBCb2n5_7-VC3NgLCJSC10TWPi2SyNaEqpQZXpr_Q5sMfQ_o_/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbw2I8rq16apOzIQNmxNNPBfk4TIr4UrUQOOnU2hVTr-a826LSb0ysuGlYXoi8iFA8Cq/exec';
 
 const form = document.getElementById('ironCladPortal');
 const submitBtn = document.getElementById('submitBtn');
 const btnLoader = document.getElementById('btnLoader');
 const btnText = document.getElementById('btnText');
 
-// Error Sensing Logic
+// Real-time Validation
 const nameInput = document.getElementById('nameInput');
 const idInput = document.getElementById('idInput');
 
 nameInput.addEventListener('input', () => {
-    const parts = nameInput.value.trim().split(/\s+/);
-    const valid = parts.length === 3;
+    const valid = nameInput.value.trim().split(/\s+/).length === 3;
     document.getElementById('nameError').style.display = (valid || nameInput.value === "") ? "none" : "block";
-    nameInput.style.borderColor = valid ? "var(--success)" : "var(--danger)";
+    nameInput.style.borderColor = valid ? "var(--success)" : "#cbd5e1";
 });
 
 idInput.addEventListener('input', () => {
     const valid = /^\d{7,8}$/.test(idInput.value);
     document.getElementById('idError').style.display = (valid || idInput.value === "") ? "none" : "block";
-    idInput.style.borderColor = valid ? "var(--success)" : "var(--danger)";
+    idInput.style.borderColor = valid ? "var(--success)" : "#cbd5e1";
 });
 
 form.addEventListener('submit', e => {
     e.preventDefault();
-    
-    // Final check before sending
     if (nameInput.value.trim().split(/\s+/).length !== 3) {
-        alert("❌ Application Error: You must provide all 3 names exactly as they appear on your ID.");
-        return;
+        alert("❌ Error: You must enter 3 names as they appear on your ID."); return;
     }
 
     submitBtn.disabled = true;
@@ -208,17 +214,13 @@ form.addEventListener('submit', e => {
     Promise.all(promises).then(() => {
         fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(formData) })
         .then(() => { 
-            // Meta Pixel Tracking
-            if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Credit Application', brand: formData.phone_brand });
-
-            alert("✅ SUCCESS! Your application is in. Watch for a call from Akeya Lilian."); 
+            if (typeof fbq === 'function') fbq('track', 'Lead', { brand: formData.phone_brand });
+            alert("✅ SUCCESS! Your application is in. Wait for a call from Akeya Lilian."); 
             form.reset(); window.location.reload(); 
         })
         .catch(() => { 
             alert("Submission failed. Check your internet."); 
-            submitBtn.disabled = false; 
-            btnLoader.style.display = "none"; 
-            btnText.innerText = "Submit Application"; 
+            submitBtn.disabled = false; btnLoader.style.display = "none"; btnText.innerText = "Submit Application"; 
         });
     });
 });
