@@ -28,17 +28,17 @@
         .trust-badges { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; font-size: 0.7em; color: #64748b; }
         .badge { background: #f8fafc; padding: 4px 10px; border-radius: 20px; border: 1px solid #e2e8f0; font-weight: 500; }
 
+        .btn-price-check { background: #fdf2f8; color: #be185d; padding: 12px; border: 1px dashed #be185d; border-radius: 10px; width: 100%; margin-bottom: 20px; font-weight: bold; font-size: 0.9em; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; box-sizing: border-box; }
+
         .strict-banner { background: #fff1f2; border: 1px solid var(--danger); color: var(--danger); padding: 12px; border-radius: 10px; font-size: 0.85em; margin-bottom: 20px; text-align: center; line-height: 1.4; }
         
         label { display: block; margin-top: 15px; font-weight: bold; font-size: 0.85em; color: #334155; }
         input, select { width: 100%; padding: 12px; margin-top: 5px; border: 2px solid #cbd5e1; border-radius: 10px; box-sizing: border-box; font-size: 16px; transition: all 0.3s ease; outline: none; }
         
         input:focus { border-color: var(--primary); box-shadow: 0 0 8px rgba(0,68,136,0.2); }
-        input:valid:not(:placeholder-shown) { border-color: var(--success); background-color: #f0fdf4; }
+        .error-hint { color: var(--danger); font-size: 0.75em; display: none; margin-top: 4px; font-weight: bold; }
 
         .file-section { background: #f8fafc; border: 2px dashed #cbd5e1; padding: 12px; border-radius: 10px; margin-top: 5px; }
-
-        .btn-price-check { background: #fdf2f8; color: #be185d; padding: 12px; border: 1px dashed #be185d; border-radius: 10px; width: 100%; margin-bottom: 20px; font-weight: bold; font-size: 0.9em; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; }
 
         .btn-submit { background: var(--primary); color: white; padding: 18px; border: none; border-radius: 10px; width: 100%; margin-top: 25px; font-weight: bold; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: transform 0.2s; }
         
@@ -68,7 +68,7 @@
     </div>
 
     <a href="https://mophones.co" target="_blank" class="btn-price-check">
-        🔍 Click here to check Phone Prices on MoPhones.co
+        🔍 Check Latest Samsung & iPhone Prices
     </a>
 
     <div class="strict-banner">
@@ -76,7 +76,7 @@
     </div>
 
     <form id="ironCladPortal">
-        <label for="region">Confirm Your Delivery Region</label>
+        <label for="region">Confirm Delivery Region</label>
         <select id="region" name="region" required>
             <option value="" disabled selected>-- Select your location --</option>
             <option value="nairobi">Nairobi County</option>
@@ -86,17 +86,26 @@
             <option value="kajiado_environs">Athi River, Syokimau, Mlolongo, Kitengela (Kajiado County)</option>
         </select>
 
-        <label>Phone Model Preferred</label>
-        <input type="text" name="preferred_phone" placeholder="e.g. Samsung A15" required>
+        <label>Preferred Phone Brand</label>
+        <select name="phone_brand" required>
+            <option value="" disabled selected>-- Choose Brand --</option>
+            <option value="Samsung">Samsung</option>
+            <option value="iPhone">iPhone</option>
+        </select>
+
+        <label>Specific Model</label>
+        <input type="text" name="preferred_phone" placeholder="e.g. Galaxy A15 / iPhone 13" required>
 
         <label>Applicant Full Name (3 Names)</label>
         <input type="text" name="full_name" id="nameInput" placeholder="As per ID" required>
+        <div id="nameError" class="error-hint">⚠️ Must enter exactly 3 names</div>
 
         <label>Applicant Email Address</label>
         <input type="email" name="customer_email" required>
 
         <label>Applicant National ID Number</label>
-        <input type="text" name="id_number" maxlength="8" minlength="7" required>
+        <input type="text" name="id_number" id="idInput" maxlength="8" minlength="7" required>
+        <div id="idError" class="error-hint">⚠️ ID must be 7 or 8 digits</div>
 
         <label>ID Front & Back Images</label>
         <div class="file-section"><input type="file" name="id_front" accept="image/*" required></div>
@@ -145,17 +154,37 @@
 </div>
 
 <script>
-const scriptURL = 'https://script.google.com/macros/s/AKfycbzeYIiyr3DVx__3giSLBkzahoD9sXg2vC3IerUSW8PqrwiwuA4CHOTuLpKh5Dh8QWNm/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzsG7JaDdtR95fLLV4lBCb2n5_7-VC3NgLCJSC10TWPi2SyNaEqpQZXpr_Q5sMfQ_o_/exec';
 
 const form = document.getElementById('ironCladPortal');
 const submitBtn = document.getElementById('submitBtn');
 const btnLoader = document.getElementById('btnLoader');
 const btnText = document.getElementById('btnText');
 
+// Error Sensing Logic
+const nameInput = document.getElementById('nameInput');
+const idInput = document.getElementById('idInput');
+
+nameInput.addEventListener('input', () => {
+    const parts = nameInput.value.trim().split(/\s+/);
+    const valid = parts.length === 3;
+    document.getElementById('nameError').style.display = (valid || nameInput.value === "") ? "none" : "block";
+    nameInput.style.borderColor = valid ? "var(--success)" : "var(--danger)";
+});
+
+idInput.addEventListener('input', () => {
+    const valid = /^\d{7,8}$/.test(idInput.value);
+    document.getElementById('idError').style.display = (valid || idInput.value === "") ? "none" : "block";
+    idInput.style.borderColor = valid ? "var(--success)" : "var(--danger)";
+});
+
 form.addEventListener('submit', e => {
     e.preventDefault();
-    if (document.getElementById('nameInput').value.trim().split(/\s+/).length < 3) {
-        alert("❌ Error: You must enter 3 names exactly as they appear on your ID."); return;
+    
+    // Final check before sending
+    if (nameInput.value.trim().split(/\s+/).length !== 3) {
+        alert("❌ Application Error: You must provide all 3 names exactly as they appear on your ID.");
+        return;
     }
 
     submitBtn.disabled = true;
@@ -179,14 +208,18 @@ form.addEventListener('submit', e => {
     Promise.all(promises).then(() => {
         fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(formData) })
         .then(() => { 
-            // Pixel Tracking: Lead Success
-            if (typeof fbq === 'function') {
-                fbq('track', 'Lead', { content_name: 'MoPhones Application', portal: 'mo_leads_portal' });
-            }
-            alert("✅ SUCCESS! Your application is in. Check your email for confirmation from Akeya Lilian."); 
+            // Meta Pixel Tracking
+            if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Credit Application', brand: formData.phone_brand });
+
+            alert("✅ SUCCESS! Your application is in. Watch for a call from Akeya Lilian."); 
             form.reset(); window.location.reload(); 
         })
-        .catch(() => { alert("Submission failed. Check your internet."); submitBtn.disabled = false; btnLoader.style.display = "none"; btnText.innerText = "Submit Application"; });
+        .catch(() => { 
+            alert("Submission failed. Check your internet."); 
+            submitBtn.disabled = false; 
+            btnLoader.style.display = "none"; 
+            btnText.innerText = "Submit Application"; 
+        });
     });
 });
 </script>
