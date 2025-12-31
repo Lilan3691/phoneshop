@@ -4,6 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MoPhones | Secure Credit Portal</title>
+    
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '852047494123267');
+    fbq('track', 'PageView');
+    </script>
     <style>
         :root { --primary: #004488; --dark-blue: #0f172a; --danger: #dc2626; --success: #16a34a; --card-bg: #ffffff; }
         body { font-family: 'Segoe UI', sans-serif; background-color: var(--dark-blue); padding: 20px 15px; margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
@@ -24,6 +37,8 @@
         input:valid:not(:placeholder-shown) { border-color: var(--success); background-color: #f0fdf4; }
 
         .file-section { background: #f8fafc; border: 2px dashed #cbd5e1; padding: 12px; border-radius: 10px; margin-top: 5px; }
+
+        .btn-price-check { background: #fdf2f8; color: #be185d; padding: 12px; border: 1px dashed #be185d; border-radius: 10px; width: 100%; margin-bottom: 20px; font-weight: bold; font-size: 0.9em; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; }
 
         .btn-submit { background: var(--primary); color: white; padding: 18px; border: none; border-radius: 10px; width: 100%; margin-top: 25px; font-weight: bold; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: transform 0.2s; }
         
@@ -52,11 +67,25 @@
         <span class="badge">🔒 Data Encrypted</span>
     </div>
 
+    <a href="https://mophones.co" target="_blank" class="btn-price-check">
+        🔍 Click here to check Phone Prices on MoPhones.co
+    </a>
+
     <div class="strict-banner">
         🚨 <strong>CREDIT NOTICE:</strong> Dishonesty during the <strong>Credit Call</strong> will lead to automatic disqualification.
     </div>
 
     <form id="ironCladPortal">
+        <label for="region">Confirm Your Delivery Region</label>
+        <select id="region" name="region" required>
+            <option value="" disabled selected>-- Select your location --</option>
+            <option value="nairobi">Nairobi County</option>
+            <option value="kiambu">Kiambu County</option>
+            <option value="machakos">Machakos Town</option>
+            <option value="nakuru">Nakuru Town</option>
+            <option value="kajiado_environs">Athi River, Syokimau, Mlolongo, Kitengela (Kajiado County)</option>
+        </select>
+
         <label>Phone Model Preferred</label>
         <input type="text" name="preferred_phone" placeholder="e.g. Samsung A15" required>
 
@@ -112,7 +141,7 @@
 <div class="footer">
     Portal Code: <strong>mo_leads_portal</strong><br>
     MoPhones Sales Agent: <strong>Akeya Lilian</strong><br>
-    Office: Pioneer House Kimathi Street,Nairobi.
+    Office: Pioneer House Kimathi Street, Nairobi.
 </div>
 
 <script>
@@ -150,6 +179,10 @@ form.addEventListener('submit', e => {
     Promise.all(promises).then(() => {
         fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(formData) })
         .then(() => { 
+            // Pixel Tracking: Lead Success
+            if (typeof fbq === 'function') {
+                fbq('track', 'Lead', { content_name: 'MoPhones Application', portal: 'mo_leads_portal' });
+            }
             alert("✅ SUCCESS! Your application is in. Check your email for confirmation from Akeya Lilian."); 
             form.reset(); window.location.reload(); 
         })
