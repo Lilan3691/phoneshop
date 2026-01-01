@@ -19,16 +19,19 @@
     </script>
     <style>
         :root { --primary: #004488; --dark-blue: #0f172a; --danger: #dc2626; --success: #16a34a; --card-bg: #ffffff; }
-        body { font-family: 'Segoe UI', sans-serif; background-color: var(--dark-blue); padding: 20px 15px; margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-        .container { background: var(--card-bg); padding: 30px 25px; border-radius: 20px; max-width: 480px; width: 100%; box-shadow: 0 15px 35px rgba(0,0,0,0.5); position: relative; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--dark-blue); padding: 20px 15px; margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; -webkit-font-smoothing: antialiased; }
         
-        .header { text-align: center; margin-bottom: 5px; }
-        /* Brand Header Style */
+        /* Sniper Optimization: Faster Container Rendering */
+        .container { background: var(--card-bg); padding: 30px 25px; border-radius: 20px; max-width: 480px; width: 100%; box-shadow: 0 15px 35px rgba(0,0,0,0.5); position: relative; contain: content; }
+        
         .brand-header { text-align: center; border-bottom: 2px solid #f1f5f9; padding-bottom: 15px; margin-bottom: 20px; }
         .brand-header h1 { color: var(--primary); margin: 0; font-size: 1.4em; text-transform: uppercase; letter-spacing: 1px; }
         .brand-header p { margin: 5px 0 0 0; font-size: 0.85em; color: #64748b; font-weight: 500; }
 
+        /* Prevent Layout Shift for Logo */
+        .header { text-align: center; margin-bottom: 5px; min-height: 60px; }
         .rating { color: #f59e0b; font-size: 0.9em; font-weight: bold; text-align: center; margin-bottom: 15px; }
+        
         .trust-badges { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; font-size: 0.7em; color: #64748b; }
         .badge { background: #f8fafc; padding: 4px 10px; border-radius: 20px; border: 1px solid #e2e8f0; font-weight: 500; }
 
@@ -37,7 +40,7 @@
         .strict-banner { background: #fff1f2; border: 1px solid var(--danger); color: var(--danger); padding: 12px; border-radius: 10px; font-size: 0.85em; margin-bottom: 20px; text-align: center; line-height: 1.4; }
         
         label { display: block; margin-top: 15px; font-weight: bold; font-size: 0.85em; color: #334155; }
-        input, select { width: 100%; padding: 12px; margin-top: 5px; border: 2px solid #cbd5e1; border-radius: 10px; box-sizing: border-box; font-size: 16px; transition: all 0.3s ease; outline: none; }
+        input, select { width: 100%; padding: 12px; margin-top: 5px; border: 2px solid #cbd5e1; border-radius: 10px; box-sizing: border-box; font-size: 16px; transition: all 0.3s ease; outline: none; appearance: none; }
         
         input:focus { border-color: var(--primary); box-shadow: 0 0 8px rgba(0,68,136,0.2); }
         .error-hint { color: var(--danger); font-size: 0.75em; display: none; margin-top: 4px; font-weight: bold; }
@@ -67,7 +70,7 @@
     </div>
 
     <div class="header">
-        <img src="https://mophones.co/cdn/shop/files/MO-Logo-01_160x.png?v=1691582743" width="130">
+        <img src="https://mophones.co/cdn/shop/files/MO-Logo-01_160x.png?v=1691582743" width="130" height="42" loading="eager" alt="MoPhones Logo">
     </div>
     <div class="rating">⭐ 4.8/5 Customer Rating</div>
 
@@ -162,7 +165,7 @@
 <div class="whatsapp-container">
     <div class="whatsapp-label">Chat with Akeya</div>
     <a href="https://wa.me/254112384099?text=Hello%20Akeya,%20I%20need%20help%20with%20my%20MoPhones%20application" class="whatsapp-float" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="35" alt="WhatsApp">
     </a>
 </div>
 
@@ -180,7 +183,6 @@ const submitBtn = document.getElementById('submitBtn');
 const btnLoader = document.getElementById('btnLoader');
 const btnText = document.getElementById('btnText');
 
-// Real-time Validation
 const nameInput = document.getElementById('nameInput');
 const idInput = document.getElementById('idInput');
 
