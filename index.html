@@ -11,6 +11,7 @@
             --text-dark: #1a1a1a;
             --border-light: #e5e7eb;
             --success-green: #166534;
+            --whatsapp-green: #25D366;
         }
         
         body { 
@@ -126,6 +127,26 @@
             cursor: pointer; 
         }
 
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #fff;
+            color: var(--whatsapp-green);
+            padding: 15px;
+            border: 2px solid var(--whatsapp-green);
+            border-radius: 14px;
+            width: 100%;
+            margin-top: 12px;
+            font-weight: 700;
+            font-size: 0.9em;
+            text-decoration: none;
+            box-sizing: border-box;
+            transition: 0.2s;
+        }
+        .whatsapp-btn:hover { background: #f0fff4; }
+
         .footer { text-align: center; font-size: 0.7em; color: #9ca3af; margin: 30px 0; line-height: 1.6; }
     </style>
 </head>
@@ -144,7 +165,7 @@
     </div>
 
     <form id="ironCladPortal">
-        <label>Your County/Location(Lipamdogomdogo & delivery is currently available in the locations listed)</label>
+        <label>Your County/Location (Lipamdogomdogo & delivery is currently available in the locations listed)</label>
         <select name="region" required>
             <option value="" disabled selected>Select your location</option>
             <option value="nairobi county">Nairobi County</option>
@@ -217,6 +238,10 @@
         <button type="submit" class="btn-submit" id="submitBtn">
             <span id="btnText">Submit Application for Review</span>
         </button>
+
+        <a href="https://wa.me/254112384099?text=Hello,%20I%20need%20help%20with%20my%20Creditphoneslimited%20application." class="whatsapp-btn" target="_blank">
+            💬 WhatsApp for Assistance
+        </a>
     </form>
 </div>
 
