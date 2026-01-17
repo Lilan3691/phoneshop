@@ -3,139 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creditphoneslimited | Secure Portal</title>
+    <title>Secure Upload | mo_leads_portal</title>
     <style>
-        :root { 
-            --primary-blue: #0056b3; 
-            --soft-bg: #fdfdfd; 
-            --text-dark: #1a1a1a;
-            --border-light: #e5e7eb;
-            --success-green: #166534;
-            --input-bg: #f9fafb;
-        }
-        
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
-            background-color: #f3f4f6; 
-            padding: 20px 15px; 
-            margin: 0; 
-            color: var(--text-dark); 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-        }
-
-        .container { 
-            background: #ffffff; 
-            padding: 30px 20px; 
-            border-radius: 20px; 
-            max-width: 450px; 
-            width: 100%; 
-            box-shadow: 0 4px 25px rgba(0,0,0,0.05); 
-            border: 1px solid var(--border-light);
-        }
-
-        h2 { 
-            text-align: center; 
-            color: var(--primary-blue); 
-            font-weight: 700; 
-            margin-bottom: 25px; 
-            letter-spacing: -0.5px;
-        }
-
-        .form-group { margin-bottom: 20px; }
-
-        label { 
-            display: block; 
-            margin-bottom: 8px; 
-            font-weight: 500; 
-            font-size: 0.9rem;
-            color: #4b5563;
-        }
-
-        input { 
-            width: 100%; 
-            padding: 12px 15px; 
-            border: 1px solid var(--border-light); 
-            border-radius: 12px; 
-            box-sizing: border-box; 
-            font-size: 16px; 
-            background: var(--input-bg);
-            transition: all 0.2s ease;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
-            background: #fff;
-        }
-
-        button { 
-            width: 100%; 
-            padding: 14px; 
-            background-color: var(--primary-blue); 
-            color: white; 
-            border: none; 
-            border-radius: 12px; 
-            cursor: pointer; 
-            font-size: 16px; 
-            font-weight: 600; 
-            margin-top: 10px;
-            transition: background 0.3s ease;
-        }
-
-        button:hover { background-color: #004494; }
-
-        .footer {
-            margin-top: 20px;
-            font-size: 0.8rem;
-            color: #9ca3af;
-            text-align: center;
-        }
+        body { font-family: -apple-system, sans-serif; background: #f9fafb; padding: 15px; display: flex; justify-content: center; margin: 0; }
+        .card { background: white; padding: 25px; border-radius: 12px; max-width: 400px; width: 100%; border: 1px solid #e5e7eb; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .h { color: #111; font-weight: 800; border-bottom: 2px solid #000; margin-bottom: 20px; padding-bottom: 10px; text-align: center; text-transform: uppercase; letter-spacing: 1px; }
+        .price-link { display: block; text-align: center; color: #0056b3; font-size: 0.8em; font-weight: bold; margin-bottom: 20px; text-decoration: underline; }
+        label { display: block; margin-top: 15px; font-size: 0.75em; font-weight: bold; color: #4b5563; }
+        input { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #d1d5db; border-radius: 8px; box-sizing: border-box; background: #f9fafb; font-size: 16px; }
+        .btn { background: #000; color: #fff; border: none; padding: 18px; width: 100%; border-radius: 8px; margin-top: 25px; font-weight: bold; font-size: 1em; cursor: pointer; }
+        .info { font-size: 0.7em; color: #9ca3af; text-align: center; margin-top: 20px; line-height: 1.5; }
     </style>
 </head>
 <body>
+<div class="card">
+    <div class="h">VERIFICATION VAULT</div>
+    
+    <a href="https://mophones.co" target="_blank" class="price-link">VIEW LATEST PRICE LIST & DEPOSITS</a>
 
-<div class="container">
-    <h2>Secure Portal</h2>
-    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-        <div class="form-group">
-            <label>Customer Full Name</label>
-            <input type="text" name="customer_name" required placeholder="As it appears on ID">
-        </div>
+    <form id="portalForm">
+        <label>NATIONAL ID NUMBER</label>
+        <input type="text" name="id" required placeholder="8-digit number">
+        
+        <label>NEXT OF KIN ID NUMBER</label>
+        <input type="text" name="kin_id" required placeholder="Enter kin's ID number">
 
-        <div class="form-group">
-            <label>Customer ID Number</label>
-            <input type="number" name="customer_id" required placeholder="National ID">
-        </div>
+        <label>ID FRONT & BACK (PHOTOS)</label>
+        <input type="file" name="f" accept="image/*" required style="margin-bottom:8px;">
+        <input type="file" name="b" accept="image/*" required>
+        
+        <label>M-PESA STATEMENT (12 MONTHS PDF)</label>
+        <input type="file" name="s" accept=".pdf" required>
+        
+        <label>PDF PASSWORD (IF ANY)</label>
+        <input type="text" name="p" placeholder="Enter password or leave blank">
 
-        <div class="form-group">
-            <label>Phone Number (M-Pesa)</label>
-            <input type="tel" name="phone" required placeholder="07... or 01...">
-        </div>
-
-        <div class="form-group">
-            <label>Next of Kin Name</label>
-            <input type="text" name="kin_name" required placeholder="Full Name">
-        </div>
-
-        <div class="form-group">
-            <label>Next of Kin ID Number</label>
-            <input type="number" name="kin_id" required placeholder="National ID">
-        </div>
-
-        <div class="form-group">
-            <label>Next of Kin Contact</label>
-            <input type="tel" name="kin_phone" required placeholder="Phone Number">
-        </div>
-
-        <button type="submit">Submit Details</button>
+        <button type="submit" class="btn">SUBMIT FOR 5-HOUR APPROVAL</button>
     </form>
-    <div class="footer">
-        &copy; 2026 Creditphoneslimited. Secure Submission.
+    
+    <div class="info">
+        🔒 SSL Encrypted Submission<br>
+        Portal Ref: <b>mo_leads_portal</b><br>
+        <i>Approved applicants will receive a call from Agent Akeya.</i>
     </div>
 </div>
-
 </body>
 </html>
