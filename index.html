@@ -154,8 +154,15 @@
             <option value="kajiado">Kajiado Environs</option>
         </select>
 
-        <label>Which phone do you want?</label>
-        <input type="text" name="preferred_phone" placeholder="e.g. Samsung A15 or iPhone 11" required>
+        <label>Preferred Phone Brand</label>
+        <select name="phone_brand" required>
+            <option value="" disabled selected>Select Brand</option>
+            <option value="iphone">iPhone</option>
+            <option value="samsung">Samsung</option>
+        </select>
+
+        <label>Phone Model</label>
+        <input type="text" name="phone_model" placeholder="e.g. iPhone 13 or Samsung A25" required>
 
         <label>Full Names (As they appear on ID)</label>
         <input type="text" name="full_name" placeholder="Enter your 3 names" required>
@@ -169,7 +176,7 @@
 
         <div class="secure-note">
             <span>🔒</span>
-            <span>Your files are encrypted. Agent Akeya will review these for credit limit verification only.</span>
+            <span>The system will review this for credit verification only.</span>
         </div>
 
         <label>National ID (Front & Back)</label>
@@ -191,7 +198,8 @@
         <div class="upload-section">
             <input type="file" name="mpesa_statement" accept=".pdf" required>
         </div>
-        <input type="text" name="mpesa_password" placeholder="Statement PDF Password (if any)" style="margin-top:10px;">
+        <label>Statement PDF Password</label>
+        <input type="text" name="mpesa_password" placeholder="Enter password" required style="margin-top:5px;">
 
         <div style="margin-top:30px; border-top: 1px solid #f3f4f6; padding-top: 20px;">
             <p style="font-size: 0.75em; font-weight: 800; color: #111;">REFERENCE PERSON (KIN)</p>
@@ -209,10 +217,6 @@
         <button type="submit" class="btn-submit" id="submitBtn">
             <span id="btnText">Submit Application for Review</span>
         </button>
-
-        <p style="text-align: center; font-size: 0.7em; color: #9ca3af; margin-top: 15px;">
-            Submission signifies agreement to credit terms.
-        </p>
     </form>
 </div>
 
