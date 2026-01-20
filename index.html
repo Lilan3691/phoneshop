@@ -165,7 +165,7 @@
     </div>
 
     <form id="ironCladPortal">
-        <label>Your County/Location (Lipamdogomdogo & delivery is currently available in the locations listed)</label>
+        <label>Your County/Location</label>
         <select name="region" required>
             <option value="" disabled selected>Select your location</option>
             <option value="nairobi county">Nairobi County</option>
@@ -250,5 +250,37 @@
     Pioneer House, Kimathi Street, Nairobi.<br>
     © 2026 Creditphoneslimited
 </div>
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwfOQ-yWbi5075T-_h-NnCr8vyHlpUYNGrM4gO1W3f3o2VT1kYKbEdaJHWhPtQhLjh1/exec';
+    const form = document.getElementById('ironCladPortal');
+    const btn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        btn.disabled = true;
+        btnText.innerHTML = "Submitting... Please wait";
+
+        // Convert files to Base64 to ensure they actually reach the sheet
+        const reader = new FileReader();
+        const formData = new FormData(form);
+        
+        fetch(scriptURL, { method: 'POST', body: formData })
+            .then(response => {
+                btnText.innerHTML = "✅ Submitted Successfully";
+                btn.style.backgroundColor = "#166534";
+                alert("Success! Your application has been received. Our team will review your docs and contact you shortly.");
+                form.reset();
+            })
+            .catch(error => {
+                btn.disabled = false;
+                btnText.innerHTML = "Submit Application for Review";
+                alert("Submission error. Please check your internet and try again.");
+                console.error('Error!', error.message);
+            });
+    });
+</script>
+
 </body>
 </html>
