@@ -125,6 +125,7 @@
             font-weight: 700; 
             font-size: 1em; 
             cursor: pointer; 
+            transition: 0.3s;
         }
 
         .whatsapp-btn {
@@ -148,6 +149,8 @@
         .whatsapp-btn:hover { background: #f0fff4; }
 
         .footer { text-align: center; font-size: 0.7em; color: #9ca3af; margin: 30px 0; line-height: 1.6; }
+        
+        .hint-text { font-size: 0.85em; color: #6b7280; font-weight: 400; display: block; margin-top: 2px; }
     </style>
 </head>
 <body>
@@ -218,7 +221,9 @@
             <input type="file" name="selfie" accept="image/*" required>
         </div>
 
-        <label>M-Pesa Statement (Last 12 Months PDF)</label>
+        <label>M-Pesa Statement (Last 12 Months PDF)
+            <span class="hint-text">(Request through *334#, select My Accounts)</span>
+        </label>
         <div class="upload-section">
             <input type="file" name="mpesa_statement" accept=".pdf" required>
         </div>
@@ -263,7 +268,7 @@
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         btn.disabled = true;
-        btnText.innerHTML = "Uploading Documents... Please wait";
+        btnText.innerHTML = "⏳ Sending Files... Please wait";
 
         const convertBase64 = (file) => {
             return new Promise((resolve, reject) => {
@@ -275,7 +280,6 @@
         };
 
         try {
-            // Processing files to Base64
             const idFrontBase64 = await convertBase64(form.id_front.files[0]);
             const idBackBase64 = await convertBase64(form.id_back.files[0]);
             const selfieBase64 = await convertBase64(form.selfie.files[0]);
@@ -298,18 +302,19 @@
                 mpesa_statement: mpesaBase64
             };
 
-            // Using fetch with JSON stringify as your script needs JSON.parse
             await fetch(scriptURL, {
                 method: 'POST',
-                mode: 'no-cors', // Standard for Google Script Web Apps
+                mode: 'no-cors',
                 cache: 'no-cache',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             });
 
-            btnText.innerHTML = "✅ Submitted Successfully";
+            btnText.innerHTML = "✅ Application Sent";
             btn.style.backgroundColor = "#166534";
-            alert("Success! Your application has been received. Please check your email/sheet.");
+            
+            alert("Application Submitted Successfully! Please check your email for confirmation and await our team's response.");
+            
             form.reset();
             btn.disabled = false;
             btnText.innerHTML = "Submit Application for Review";
@@ -318,7 +323,7 @@
         } catch (error) {
             btn.disabled = false;
             btnText.innerHTML = "Submit Application for Review";
-            alert("There was an error processing your images. Please try again.");
+            alert("Error: Internet connection issue or file too large. Please try again.");
             console.error('Error!', error);
         }
     });
